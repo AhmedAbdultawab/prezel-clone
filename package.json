@@ -1,0 +1,19 @@
+{
+  "name": "prezel",
+  "version": "1.0.0",
+  "description": "475 senior capstone project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asawarik/Prezel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asawarik/Prezel/issues"
+  },
+  "homepage": "https://github.com/asawarik/Prezel#readme"
+}
