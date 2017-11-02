@@ -16,6 +16,38 @@ exports.create = function(collection, data, callback) {
     });
 }
 
+exports.retrieve = function(collection, iquery, callback) {
+  mongoDB.collection(collection).findOne({id: iquery}).then(function (data) {
+    callback(data);
+  });
+}
+
+exports.update = function(collection, filter, update, callback) {
+  mongoDB
+    .collection(collection)     
+    .updateOne(                
+      { "id" : filter },                  
+      { $set: { "contents": update } },                  
+      {upsert:false},            
+      function(err, status) { 
+        if (err) doError(err);
+        callback('Modified '+ status.modifiedCount 
+                  +' and added '+ status.upsertedCount+" documents");
+        });
+}
+
+exports.delete = function(collection, filter, callback) {
+  mongoDB
+    .collection(collection)     
+    .deleteOne(                
+      { "id" : filter },                                                
+      function(err, status) { 
+      success = status;
+        if (err) doError(err);
+        callback("Completed");
+        });
+}
+
 
 
 
