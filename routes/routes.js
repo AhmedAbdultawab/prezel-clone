@@ -1,5 +1,5 @@
 // Access to Models 
-var templateModel = require("../models/templateModel.js")
+var presentationModel = require("../models/presentationModel.js")
 
 // All routes 
 exports.init = function(app) {
@@ -8,7 +8,8 @@ exports.init = function(app) {
 
 
   // Routes that deal with notes and updating them 
-  app.post('/template', doCreate); 
+  app.get('/presentations', getForm); 
+  app.post('/presentations', doCreate); 
 
 }
 
@@ -16,18 +17,21 @@ index = function(req, res) {
 	res.render("index");
 };
 
+getForm = function(req, res) {
+  res.render("form");
+};
+
 
 // Handling Calls
 doCreate = function(req, res){
-  console.log(req.body.email);
   if (Object.keys(req.body).length == 0) {
-    res.render('message', {title: 'Create a template? ', obj: "No create message body found"});
+    res.render('form', {title: 'Create a presentation? ', obj: "No create message body found"});
     return;
   }
-  templateModel.create ( "templates", 
+  presentationModel.create ( "presentations", 
 	                    req.body,
 		                  function(result) {
   		                  var success = (result ? "Create successful" : "Create unsuccessful");
-	  	                  res.render('message', {title: 'Templated created? ', obj: success});
+	  	                  res.render('form', {title: 'Presentation created? ', obj: success});
 		                  });
 };
