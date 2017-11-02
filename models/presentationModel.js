@@ -1,5 +1,3 @@
-mongodb://erwilson:sassycat@ds143245.mlab.com:43245/475database
-
 var MongoClient = require('mongodb').MongoClient;
 var mongoDB; 
 

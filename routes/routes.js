@@ -17,7 +17,7 @@ index = function(req, res) {
 };
 
 
-// Handling Calls to Notes
+// Handling Calls
 doCreate = function(req, res){
   console.log(req.body.email);
   if (Object.keys(req.body).length == 0) {
