@@ -1,0 +1,16 @@
+<html>
+	<body>
+		<div class="site-wrapper"> 
+				<br> <br> <br>
+				Prezel <br>
+				<form action="/templateCreate" method="POST">
+                    <input name="Name" type="hidden" value= <%= user.email%> >
+                    <div class="form-group">
+    					<textarea class="form-control" id="exampleTextarea" name= "contents" rows="3"> <%= user.contents%></textarea>
+  					</div>
+         			<br>
+                  <button type="submit" class="btn btn-default">Save Notes</button>
+                </form>
+		</div>
+	</body>
+</html>
