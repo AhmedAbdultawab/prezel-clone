@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/asawarik/Prezel/issues"
   },
-  "homepage": "https://github.com/asawarik/Prezel#readme"
+  "homepage": "https://github.com/asawarik/Prezel#readme",
+  "dependencies": {
+    "mongodb": "^2.2.33"
+  }
 }
