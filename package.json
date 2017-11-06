@@ -2,7 +2,7 @@
   "name": "prezel",
   "version": "1.0.0",
   "description": "475 capstone project ",
-  "main": "index.js",
+  "main": "newIndex.html",
   "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,8 +21,10 @@
   "dependencies": {
     "ajax-request": "^1.2.1",
     "body-parser": "^1.18.2",
+    "bower": "^1.8.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "pptxgenjs": "^1.9.0"
   }
 }

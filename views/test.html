@@ -1,0 +1,15 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/gitbrent/PptxGenJS/master/dist/pptxgen.js"></script>
+<script> 
+function downloadPPT() {
+    var pptx = new PptxGenJS();
+    var slide = pptx.addNewSlide();
+    var opts = { x:1.0, y:1.0, font_size:42, color:'00FF00' };
+    slide.addText('Hello World!', opts);
+    pptx.save();
+}
+</script>
+
+<button onclick = "downloadPPT()"> hello </button>

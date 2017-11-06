@@ -14,7 +14,7 @@ exports.init = function(app) {
 }
 
 index = function(req, res) {
-	res.render("index");
+	res.render("test.html");
 };
 
 getForm = function(req, res) {
