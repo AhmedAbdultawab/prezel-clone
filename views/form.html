@@ -16,21 +16,17 @@
         <form action="" >
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Slide Type
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-        <li><a class = "comparison" href="#">Comparison</a></li>
-        <li><a href="#">Agenda</a></li>
-        <li><a href="#">General Content</a></li>
-        </ul>
-      </div>
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li><a class = "comparison">Comparison</a></li>
+          <li><a class = "agenda">Agenda</a></li>
+          <li><a class = "general">General Content</a></li>
+          </ul>
+        </div>
         <div class="input-group control-group after-add-more">
-            
-            
-               <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
-                      <div class="input-group-btn"> 
-                        <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                      </div>
-              </div>
+         <div class = "subtopics">   
+          </div>
+        </div>
  
         </form>
         
@@ -64,7 +60,8 @@
       //the thing ma bob to split into two
       $(".comparison").click(function(){ 
           var html = $(".copy-fields").html();
-          $(".after-add-more").after(html);
+          $(".subtopics").after(html);
+          $(".subtopics").after(html);
       });
  
     });
