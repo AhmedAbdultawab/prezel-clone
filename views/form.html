@@ -1,3 +1,4 @@
+<!-- <script text = "text/javascript" src = "/form.js"></script> -->
 <html lang="en">
 <head>
   <title>Add Remove input fields dynamically using jQuery bootstrap</title>
@@ -23,29 +24,59 @@
           <li><a class = "general">General Content</a></li>
           </ul>
         </div>
-        <div class="input-group control-group after-add-more">
+        
          <div class = "subtopics">   
           </div>
-        </div>
+        
  
         </form>
         
  
         <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-        <div class="copy-fields hide">
+        <div class="subtopic-fields_1 hide">
           <div class="control-group input-group" style="margin-top:10px">
-            <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here">
+            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic">
             <div class="input-group-btn"> 
-              <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-            </div>
+              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
+            </div> 
           </div>
         </div>
+
+        <div class="subtopic-fields_2 hide">
+          <div class="control-group input-group" style="margin-top:10px">
+            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic">
+            <div class="input-group-btn"> 
+              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
+            </div> 
+          </div>
+        </div>
+
+        <div class="subtopic-bullets hide">
+          <div class="control-group input-group" style="margin-top:10px">
+            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic_Bullet">
+            <div class="input-group-btn"> 
+              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
+            </div> 
+          </div>
+        </div>
+
     </div>
   </div>
 </div>
  
-<script type="text/javascript">
+
  
+</body>
+</html>
+
+<script type="text/javascript">
+ function work() {
+          console.log("click is happening");
+          var html = $(".subtopic-bullets").html();
+          $(".subtopics-fields_1").after(html);
+          $(".subtopics").after(html);
+      }
+    
     $(document).ready(function() {
  
     //here first get the contents of the div with name class copy-fields and add it to after "after-add-more" div class.
@@ -59,14 +90,18 @@
       });
       //the thing ma bob to split into two
       $(".comparison").click(function(){ 
-          var html = $(".copy-fields").html();
-          $(".subtopics").after(html);
-          $(".subtopics").after(html);
+          console.log("click is happening");
+          var html1 = $(".subtopic-fields_1").html();
+          var html2 = $(".subtopic-fields_2").html();
+          $(".subtopics").after(html1);
+          $(".subtopics").after(html2);
       });
+      // $("#add-idea").click(function() {
+      //   var html = $(".subtopic-fields").html();
+      //   $(this).after(html);
+      //   $(this).after(html);
+      // });
  
     });
  
 </script>
- 
-</body>
-</html>
