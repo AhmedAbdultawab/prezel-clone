@@ -1,7 +1,7 @@
 <!-- <script text = "text/javascript" src = "/form.js"></script> -->
 <html lang="en">
 <head>
-  <title>Add Remove input fields dynamically using jQuery bootstrap</title>
+  <title>Form</title>
   <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -9,99 +9,124 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
- 
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">Form</div>
-    <div class="panel-body">
-        <form action="" >
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Slide Type
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-          <li><a class = "comparison">Comparison</a></li>
-          <li><a class = "agenda">Agenda</a></li>
-          <li><a class = "general">General Content</a></li>
-          </ul>
-        </div>
-        
-         <div class = "subtopics">   
-          </div>
-        
- 
-        </form>
-        
- 
-        <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-        <div class="subtopic-fields_1 hide">
-          <div class="control-group input-group" style="margin-top:10px">
-            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic">
-            <div class="input-group-btn"> 
-              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
-            </div> 
-          </div>
-        </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Form</div>
+        <div class="panel-body">
+          <!-- <button class="btn btn-primary" type="button" onclick = "addSlide()" >Add Slide</button> --><br><br>
+          <form method= "POST" action= '/generate_prez' enctype='application/json'>
+            <!-- starting to build out slide object -->
+            <div class="slideFormation ">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Slide Type
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a class = "comparison">Comparison</a></li>
+                    <li><a class = "agenda">Agenda</a></li>
+                    <li><a class = "general">General</a></li>
+                    <li><a class = "stats">Statistics</a></li>
+                  </ul>
+              </div>
+              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
+              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
+              <div class = "subtopics">
+              </div>
+            </div>
+            <!-- end of slide object -->
+            <br> <br>
+            <input type="submit" value="Submit">
+          </form>
 
-        <div class="subtopic-fields_2 hide">
-          <div class="control-group input-group" style="margin-top:10px">
-            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic">
-            <div class="input-group-btn"> 
-              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
-            </div> 
-          </div>
-        </div>
 
-        <div class="subtopic-bullets hide">
+
+          <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
+          <div class="subtopic-fields_1 hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+            </div>
+          </div>
+
+          <div class="subtopic-fields_2 hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              Title: <br> <input type="text" name="name" value="Norway">
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+              <!--<div class="input-group-btn">
+                <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button>
+              </div> -->
+            </div>
+          </div>
+
+        <!--   <div class="subtopic-bullets hide">
           <div class="control-group input-group" style="margin-top:10px">
             <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic_Bullet">
-            <div class="input-group-btn"> 
-              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button> 
-            </div> 
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button>
+            </div>
           </div>
-        </div>
+        </div>-->
 
     </div>
   </div>
 </div>
- 
 
- 
+
+
 </body>
 </html>
 
 <script type="text/javascript">
- function work() {
-          console.log("click is happening");
-          var html = $(".subtopic-bullets").html();
-          $(".subtopics-fields_1").after(html);
-          $(".subtopics").after(html);
-      }
-    
+ //function work() {
+  //        console.log("click is happening");
+    //      var html = $(".subtopic-bullets").html();
+    //      $(".subtopics-fields_1").after(html);
+    //      $(".subtopics").after(html);
+    //  }
+  //  function addSlide() {
+  //    var formObj = $("form").html();
+  //    var slide = $(".slideFormation")
+  //    formObj.append(slide) ;
+  //  }
+
     $(document).ready(function() {
- 
+
     //here first get the contents of the div with name class copy-fields and add it to after "after-add-more" div class.
-      $(".add-more").click(function(){ 
+      $(".add-more").click(function(){
           var html = $(".copy-fields").html();
           $(".after-add-more").after(html);
       });
 //here it will remove the current value of the remove button which has been pressed
-      $("body").on("click",".remove",function(){ 
+      $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
       });
       //the thing ma bob to split into two
-      $(".comparison").click(function(){ 
+      $(".comparison").click(function(){
           console.log("click is happening");
           var html1 = $(".subtopic-fields_1").html();
-          var html2 = $(".subtopic-fields_2").html();
           $(".subtopics").after(html1);
-          $(".subtopics").after(html2);
+          $(".subtopics").after(html1);
+      });
+      $(".agenda").click(function(){
+        console.log("click is happening");
+        var html1 = $(".subtopic-fields_1").html();
+        $(".subtopics").after(html1);
+      });
+      $(".general").click(function(){
+        console.log("click is happening");
+        var html1 = $(".subtopic-fields_1").html();
+        $(".subtopics").after(html1);
+      });
+      $(".stats").click(function(){
+        console.log("click is happening");
+        var html1 = $(".subtopic-fields_1").html();
+        $(".subtopics").after(html1);
       });
       // $("#add-idea").click(function() {
       //   var html = $(".subtopic-fields").html();
       //   $(this).after(html);
       //   $(this).after(html);
       // });
- 
+      // AJAX call to submit form
     });
- 
+
 </script>

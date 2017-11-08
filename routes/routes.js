@@ -1,24 +1,31 @@
-// Access to Models 
+// Access to Models
 var presentationModel = require("../models/presentationModel.js")
 
-// All routes 
+// All routes
 exports.init = function(app) {
   // routes to deal with home, login, signup
-  app.get('/', index); 
+  app.get('/', index);
 
 
-  // Routes that deal with notes and updating them 
-  app.get('/presentations', getForm); 
-  app.post('/presentations', doCreate); 
+  // Routes that deal with notes and updating them
+  app.get('/presentations', getForm);
+  app.post('/presentations', doCreate);
+
+  app.post('/generate_prez', generate_Powerpoint);
 
 }
 
 index = function(req, res) {
-	res.render("form.html");
+	res.render('form.html');
 };
 
 getForm = function(req, res) {
-  res.render("form");
+  res.render('form');
+};
+generate_Powerpoint = function(req, res) {
+  results = req.body
+  console.log(results)
+  res.render('form_output.ejs', { formOutput: results});
 };
 
 
@@ -28,7 +35,7 @@ doCreate = function(req, res){
     res.render('form', {title: 'Create a presentation? ', obj: "No create message body found"});
     return;
   }
-  presentationModel.create ( "presentations", 
+  presentationModel.create ( "presentations",
 	                    req.body,
 		                  function(result) {
   		                  var success = (result ? "Create successful" : "Create unsuccessful");
