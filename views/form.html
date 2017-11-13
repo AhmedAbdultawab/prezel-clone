@@ -13,12 +13,12 @@
     <div class="panel panel-default">
       <div class="panel-heading">Form</div>
         <div class="panel-body">
-          <!-- <button class="btn btn-primary" type="button" onclick = "addSlide()" >Add Slide</button> --><br><br>
+          <!--<button class="btn btn-primary" type="button" id= "addSlides" onclick = "addSlide()" >Add Slide</button> <br><br> -->
           <form method= "POST" action= '/generate_prez' enctype='application/json'>
             <!-- starting to build out slide object -->
-            <div class="slideFormation ">
+            <div class="slideFormation">
               <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Slide Type
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Slide
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
                     <li><a class = "comparison">Comparison</a></li>
@@ -27,8 +27,6 @@
                     <li><a class = "stats">Statistics</a></li>
                   </ul>
               </div>
-              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
-              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
               <div class = "subtopics" id= "contentDiv">
               </div>
             </div>
@@ -40,17 +38,29 @@
 
 
           <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
+
+
           <div class="comparison-field hide">
             <div class="control-group input-group" style="margin-top:10px">
-              Sub-header: <br> <input type="text" name="name" value="Comparison Header"> <br>
-              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
-              Sub-header: <br> <input type="text" name="name" value="Comparison Header 2"> <br>
-              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+              <b>COMPARISON- NEED TO ADD REMOVE SLIDE FUNCITONALITY </b> <br>
+              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
+              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
+              Overall Topic: <br> <input type="text" name="topic_title" value=""> <br>
+              <input type="hidden" name="slide_type" value="comparison"> <br>
+              Comparison Topic 1: <input type="text" name="name" value="Optional"> <br> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Comparison 1 Details"> <br><br>
+              Comparison Topic 2: <input type="text" name="name" value="Optional"> <br> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Comparison 2 Details">
             </div>
           </div>
 
           <div class="general-field hide">
             <div class="control-group input-group" style="margin-top:10px">
+              <b>GENERAL- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
+              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
+              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
+              Overall Topic: <br> <input type="text" name="topic_title" value=""> <br>
+              <input type="hidden" name="slide_type" value="general"> <br>
               Sub-header: <br> <input type="text" name="name" value="General Topic Header"> <br>
               <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
             </div>
@@ -58,6 +68,11 @@
 
           <div class="agenda-field hide">
             <div class="control-group input-group" style="margin-top:10px">
+              <b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
+              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
+              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
+              Overall Topic: <br> <input type="text" name="topic_title" value=""> <br>
+              <input type="hidden" name="slide_type" value="agenda"> <br>
               Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
               <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
               Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
@@ -67,10 +82,13 @@
 
           <div class="stats-field hide">
             <div class="control-group input-group" style="margin-top:10px">
-              Numeric Fact: <br> <input type="text" name="name" value="1/10, 45%, 5, etc.."> <br>
-              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
-              Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
-              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+              <b>STATISTICS- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
+              Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
+              Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
+              Overall Topic: <br> <input type="text" name="topic_title" value=""> <br>
+              <input type="hidden" name="slide_type" value="statistics"> <br>
+              Number: <br> <input type="text" name="name" value="1/10, 45%, 5, etc.."> <br>
+              Fact: <br> <input type="text" name="text_content" value="of people etc...."> <br>
             </div>
           </div>
 
@@ -93,47 +111,36 @@
 </html>
 
 <script type="text/javascript">
- //function work() {
-  //        console.log("click is happening");
-    //      var html = $(".subtopic-bullets").html();
-    //      $(".subtopics-fields_1").after(html);
-    //      $(".subtopics").after(html);
-    //  }
-  //  function addSlide() {
-  //    var formObj = $("form").html();
-  //    var slide = $(".slideFormation")
-  //    formObj.append(slide) ;
-  //  }
-
     $(document).ready(function() {
 
-    //here first get the contents of the div with name class copy-fields and add it to after "after-add-more" div class.
-      $(".add-more").click(function(){
-          var html = $(".copy-fields").html();
-          $(".after-add-more").after(html);
-      });
+    //method to dynamically add slideFormation Div
+    //  $("#addSlides").click(function(){
+          //console.log
+  //        var html = $(".slideFormation").html();
+  //        $("form").append(html);
+  //    });
 //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
       });
       $(".comparison").click(function(){
-          $("#contentDiv").empty();
+        //  $("#contentDiv").empty();
           var html1 = $(".comparison-field").html();
           $(".subtopics").append(html1);
           //$(".subtopics").after(html1);
       });
       $(".agenda").click(function(){
-        $("#contentDiv").empty();
+        //$("#contentDiv").empty();
         var html1 = $(".agenda-field").html();
         $(".subtopics").append(html1);
       });
       $(".general").click(function(){
-        $("#contentDiv").empty();
+        //$("#contentDiv").empty();
         var html1 = $(".general-field").html();
         $(".subtopics").append(html1);
       });
       $(".stats").click(function(){
-        $("#contentDiv").empty();
+      //  $("#contentDiv").empty();
         var html1 = $(".stats-field").html();
         $(".subtopics").append(html1);
       });
