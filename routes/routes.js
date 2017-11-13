@@ -24,8 +24,9 @@ getForm = function(req, res) {
 };
 generate_Powerpoint = function(req, res) {
   results = req.body
-  console.log(results)
-  res.render('form_output.ejs', { formOutput: results});
+  var resultsStr = JSON.stringify(results);
+  console.log(resultsStr);
+  res.render('form_output.ejs', { formOutput: resultsStr});
 };
 
 
