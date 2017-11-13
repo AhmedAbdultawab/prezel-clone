@@ -29,7 +29,7 @@
               </div>
               Add Image: <input type="file" name="img_content" accept="image/*" value= "Upload Image">
               Add Video: <input type="file" name="vid_content" accept="video/*" value= "Upload Video"><br>
-              <div class = "subtopics">
+              <div class = "subtopics" id= "contentDiv">
               </div>
             </div>
             <!-- end of slide object -->
@@ -40,20 +40,37 @@
 
 
           <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-          <div class="subtopic-fields_1 hide">
+          <div class="comparison-field hide">
             <div class="control-group input-group" style="margin-top:10px">
+              Sub-header: <br> <input type="text" name="name" value="Comparison Header"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+              Sub-header: <br> <input type="text" name="name" value="Comparison Header 2"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+            </div>
+          </div>
+
+          <div class="general-field hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              Sub-header: <br> <input type="text" name="name" value="General Topic Header"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
+            </div>
+          </div>
+
+          <div class="agenda-field hide">
+            <div class="control-group input-group" style="margin-top:10px">
+              Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
               Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
               <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
             </div>
           </div>
 
-          <div class="subtopic-fields_2 hide">
+          <div class="stats-field hide">
             <div class="control-group input-group" style="margin-top:10px">
-              Title: <br> <input type="text" name="name" value="Norway">
+              Numeric Fact: <br> <input type="text" name="name" value="1/10, 45%, 5, etc.."> <br>
               <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
-              <!--<div class="input-group-btn">
-                <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button>
-              </div> -->
+              Sub-header: <br> <input type="text" name="name" value="Subtopic Header"> <br>
+              <input type="textarea" name="text_content" class="form-control" placeholder="Topic Details">
             </div>
           </div>
 
@@ -99,27 +116,26 @@
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
       });
-      //the thing ma bob to split into two
       $(".comparison").click(function(){
-          console.log("click is happening");
-          var html1 = $(".subtopic-fields_1").html();
-          $(".subtopics").after(html1);
-          $(".subtopics").after(html1);
+          $("#contentDiv").empty();
+          var html1 = $(".comparison-field").html();
+          $(".subtopics").append(html1);
+          //$(".subtopics").after(html1);
       });
       $(".agenda").click(function(){
-        console.log("click is happening");
-        var html1 = $(".subtopic-fields_1").html();
-        $(".subtopics").after(html1);
+        $("#contentDiv").empty();
+        var html1 = $(".agenda-field").html();
+        $(".subtopics").append(html1);
       });
       $(".general").click(function(){
-        console.log("click is happening");
-        var html1 = $(".subtopic-fields_1").html();
-        $(".subtopics").after(html1);
+        $("#contentDiv").empty();
+        var html1 = $(".general-field").html();
+        $(".subtopics").append(html1);
       });
       $(".stats").click(function(){
-        console.log("click is happening");
-        var html1 = $(".subtopic-fields_1").html();
-        $(".subtopics").after(html1);
+        $("#contentDiv").empty();
+        var html1 = $(".stats-field").html();
+        $(".subtopics").append(html1);
       });
       // $("#add-idea").click(function() {
       //   var html = $(".subtopic-fields").html();
