@@ -3,12 +3,111 @@
 <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
 <script type="text/javascript" src="https://rawgit.com/gitbrent/PptxGenJS/master/dist/pptxgen.js"></script>
 <script> 
-var data = 
+var slideContent = 
+    {"presentation": {
+        "title": "FOOD!",
+        "pres_type" : "informational",
+        "slides": [
+            {
+                "topic_title": "Salty vs Sweet",
+                "slide_type": "comparison",
+                "subtopics": [
+                    {
+                        "name": "Salty",
+                        "text_content": "tastes salty, usually pretzels and chips"
+                    },
+                    {
+                        "name": "sweet",
+                        "text_content": "tastes sugary like ice cream and cookies"
+                    }
+                ]
+            },
+            {
+                "topic_title": "Food General Stuff",
+                "slide_type": "general",
+                "subtopics": [
+                {
+                    "name": "Need",
+                    "text_content": "people need food to live"
+                }
+                ]
+            },
+            {
+                "topic_title": "Agenda",
+                "slide_type": "agenda",
+                "text_content": [
+                    "we will first do this and then that"
+                ]
+            },
+            {
+                "topic_title": "Did you know!?",
+                "slide_type": "statistics",
+                "subtopics": {
+                    "name": "60%",
+                    "text_content": "of body is water!!"
+                }
+            }
+        ]
+    }
+};
+
 function downloadPPT() {
     var pptx = new PptxGenJS();
-    var slide = pptx.addNewSlide();
+    var json = slideContent;
     var opts = { x:1.0, y:1.0, font_size:42, color:'00FF00' };
-    slide.addText('Hello World!', opts);
+    //title slide
+    var titleSlide = pptx.addNewSlide();
+    var titleSlideName = json["presentation"]["title"];
+    titleSlide.addText(titleSlideName, opts);
+    //slide 1
+    var slide1 = pptx.addNewSlide();
+    var title1 = json.presentation.slides[0].topic_title;
+    var subtitle1 = json.presentation.slides[0].subtopics[0].name;
+    var subtitle2 = json.presentation.slides[0].subtopics[1].name;
+    var content1 = json.presentation.slides[0].subtopics[0].text_content;
+    var content2 = json.presentation.slides[0].subtopics[1].text_content;
+    var titlePosition = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
+    var position1 = { x:1.0, y:1.5, font_size:36, color:'00FF00' };
+    var position2 = { x:6.0, y:1.5, font_size:36, color:'00FF00' };
+    var position3 = { x:0.5, y:3.0, font_size:12, color:'00FF00' };
+    var position4 = { x:4.5, y:3.0, font_size:12, color:'00FF00' };
+    slide1.addText(subtitle1, position1);
+    slide1.addText(subtitle2, position2);
+    slide1.addText(content1, position3);
+    slide1.addText(content2, position4);
+    slide1.addText(title1, titlePosition);
+    //slide2
+    var slide2 = pptx.addNewSlide();
+    var slide2Title = json.presentation.slides[1].topic_title;
+    var slide2Subtitle = json.presentation.slides[1].subtopics[0].name;
+    var slide2SubContent = json.presentation.slides[1].subtopics[0].text_content;
+    var s2TitlePosition = { x:3.0, y:0.5, font_size:42, color:'00FF00' };
+    var s2position1 = { x:1.0, y:1.0, font_size:42, color:'00FF00' };
+    var s2position2 = { x:1.0, y:3.0, font_size:24, color:'00FF00' };
+    slide2.addText(slide2Title, s2TitlePosition);
+    slide2.addText(slide2Subtitle, s2position1);
+    slide2.addText(slide2SubContent, s2position2);
+    //slide3
+    var slide3 = pptx.addNewSlide();
+    var slide3Title = json.presentation.slides[2].topic_title;
+    var slide3Content = json.presentation.slides[2].text_content[0];
+    var s3TitlePosition = { x:3.0, y:0.5, font_size:42, color:'00FF00' };
+    var s3position1 = { x:1.0, y:2.0, font_size:24, color:'00FF00' };
+    slide3.addText(slide3Title, s3TitlePosition);
+    slide3.addText(slide3Content, s3position1);
+    //slide4 
+    var slide4 = pptx.addNewSlide();
+    var slide4Title = json.presentation.slides[3].topic_title;
+    var slide4Num = json.presentation.slides[3].subtopics.name;
+    var slide4Stat = json.presentation.slides[3].subtopics.text_content;
+    var s4TitlePosition = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
+    var s4position1 = { x:3.0, y:3.0, font_size:60, color:'00FF00' };
+    var s4position2 = { x:3.0, y:4.5, font_size:20, color:'00FF00' };
+    slide4.addText(slide4Title, s4TitlePosition);
+    slide4.addText(slide4Num, s4position1);
+    slide4.addText(slide4Stat, s4position2);
+
+    //save
     pptx.save();
 }
 </script>
