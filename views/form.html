@@ -132,7 +132,9 @@
         $("<div />", { "class":"agenda-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
+          .append($("<b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>"))
           .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
+          .append($("<br> <br>"))
           .appendTo(".subtopics");
         });
       $(".general").click(function(){
