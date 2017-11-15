@@ -5,6 +5,7 @@ var presentationModel = require("../models/presentationModel.js")
 exports.init = function(app) {
   // routes to deal with home, login, signup
   app.get('/', index);
+  app.get('/home', home);
 
 
   // Routes that deal with notes and updating them
@@ -17,6 +18,10 @@ exports.init = function(app) {
 
 index = function(req, res) {
 	res.render('form.html');
+};
+
+home = function(req, res) {
+  res.render('home.html');
 };
 
 getForm = function(req, res) {

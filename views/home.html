@@ -1,0 +1,82 @@
+<!-- <script text = "text/javascript" src = "/home.js"></script> -->
+<html lang="en">
+
+<head>
+  <title>Home</title>
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!-- Proxima Nova-->
+  <script src="https://use.fontawesome.com/47a7c6d863.js"></script>
+</head>
+
+<body>
+  <div class="row" style="height:15%">
+    <!-- Top Bar -->
+    <div class="col-sm-11">
+      <h2 id="logo" style="margin-left:1%;font-size:4em;font-weight:800;font-family: 'Roboto', sans-serif;">
+       Pre<span style="color:#ffb83f;">zel</span><span style="color:#ff5b5b;">.</span> </h2>
+
+    </div>
+    <div class="col-sm-1"> <i class="fa fa-user-circle fa-lg" style="font-size:4em;padding-top:30%;"></i> </div>
+  </div>
+
+  <div class="row" style="padding-top:6em;height:45%">
+    <!-- Landing Section row -->
+
+
+
+    <div class="row">
+      <div class="col-lg-5" style="margin-left:30%;position:absloute;">
+        <h2 style="font-size:5em;font-weight:800;white-space: nowrap"> What are you <br/>
+            Presenting Today<span style="color:#ff5b5b;padding-left:5px;">?</span></h2>
+      </div>
+    </div>
+    <div class="row" style="padding-top:1em;">
+      <div class="col-lg-5" style="margin-left:30%;position:absloute;">
+
+        <input type="text" class="form-control" style="height:3em;font-size:1.2em;" id="titleInput" placeholder="Title of the Presentation...."></input>
+      </div>
+
+      <div class="btn btn-default" style="height:3.5em;font-style:italic;font-weight:800;color:#ffb83f;padding-top:0.9em;" id="gobutton" href="/"> Go ! </div>
+    </div>
+
+
+  </div>
+
+  <div class="row" style="margin-top:16em;background-color:#1e1e1e;">
+    <div class="row">
+
+      <div class="col-lg-12">
+        <h2 style="color:white;font-size:5em;margin-left:2%;"> How does it Work?</h2>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <p style="color:white;font-size:1.5em;margin-left:2%;"> Tutorial goes here</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+<script type="text/javascript">
+  const triggered = false; //variable for if something has yet to be written in the text field
+  //this is done so that the text field will change only once
+  //(when it detects the first KeyUp)
+
+  $(document).ready(function() {
+    $("#gobutton").hide();
+    if (!triggered) {
+      $('#titleInput').keyup(function() {
+        $("#gobutton").show(300); //on key up, it will show the go button and change triggered to true
+        triggered = true;
+      });
+    }
+  });
+</script>
