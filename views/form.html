@@ -61,7 +61,7 @@
               <b>GENERAL- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
               Add Image: <input type="file" name="presentation.slides[1].img_content" accept="image/*" value= "Upload Image">
               Add Video: <input type="file" name="presentation.slides[1].vid_content" accept="video/*" value= "Upload Video"><br>
-              Overall Topic: <br> <input type="text" name="presentation.slides[1].topic_title" value=""> <br>
+              Topic: <br> <input type="text" name="presentation.slides[1].topic_title" value=""> <br>
               <input type="hidden" name="presentation.slides[1].slide_type" value="general"> <br>
               Sub-header: <br> <input type="text" name="presentation.slides[1].subtopics.name" value="General Topic Header Optional"> <br>
               <input type="textarea" name="presentation.slides[1].subtopics.text_content[0]" class="form-control" placeholder="Topic Details">
@@ -108,7 +108,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
+      var slideCount = -1
     //method to dynamically add slideFormation Div
     //  $("#addSlides").click(function(){
           //console.log
@@ -121,15 +121,20 @@
       });
       $(".comparison").click(function(){
         //  $("#contentDiv").empty();
+          slideCount+= 1;
           var html1 = $(".comparison-field").html();
           $(".subtopics").append(html1);
           //$(".subtopics").after(html1);
       });
       $(".agenda").click(function(){
         //$("#contentDiv").empty();
-        var html1 = $(".agenda-field").html();
-        $(".subtopics").append(html1);
-      });
+        slideCount+= 1;
+        $("<div />", { "class":"agenda-field", id: slideCount})
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
+          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
+          .appendTo(".subtopics");
+        });
       $(".general").click(function(){
         //$("#contentDiv").empty();
         var html1 = $(".general-field").html();
@@ -149,6 +154,9 @@
     });
 
 </script>
+
+
+<!-- Javascript for the nested form data package, form2js -->
 <script type="text/javascript">
   $('select').on('change', function(){
     $('#type').val($(this).val());
