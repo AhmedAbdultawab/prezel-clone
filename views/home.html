@@ -66,7 +66,7 @@
 </body>
 
 <script type="text/javascript">
-  const triggered = false; //variable for if something has yet to be written in the text field
+  var triggered = false; //variable for if something has yet to be written in the text field
   //this is done so that the text field will change only once
   //(when it detects the first KeyUp)
 
@@ -79,4 +79,10 @@
       });
     }
   });
+  
+  $("#gobutton").click(function() {
+      console.log("sup");
+      window.location = "/form";
+
+    });
 </script>
