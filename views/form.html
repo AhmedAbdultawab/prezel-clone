@@ -164,7 +164,10 @@
           }
         });
     console.log(formData);
-    document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+    //document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+    //var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+    localStorage.setItem('formData', JSON.stringify(formData));
+    window.location = "/generatePres";
   }
 </script>
 </body>

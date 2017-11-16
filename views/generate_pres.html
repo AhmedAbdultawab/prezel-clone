@@ -1,0 +1,7 @@
+<p id="presentationObject"></p>
+
+<script>
+var retrievedObject = localStorage.getItem('formData');
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
+document.getElementById("presentationObject").innerHTML = retrievedObject;
+</script>
