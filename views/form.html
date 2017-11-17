@@ -59,21 +59,13 @@
           <div class="general-field hide">
             <div class="control-group input-group" style="margin-top:10px">
               <b>GENERAL- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
+              <button class="btn btn-primary" type="button" id = "s"> Remove Slide </button>
               Add Image: <input type="file" name="presentation.slides[1].img_content" accept="image/*" value= "Upload Image">
               Add Video: <input type="file" name="presentation.slides[1].vid_content" accept="video/*" value= "Upload Video"><br>
               Topic: <br> <input type="text" name="presentation.slides[1].topic_title" value=""> <br>
               <input type="hidden" name="presentation.slides[1].slide_type" value="general"> <br>
               Sub-header: <br> <input type="text" name="presentation.slides[1].subtopics.name" value="General Topic Header Optional"> <br>
               <input type="textarea" name="presentation.slides[1].subtopics.text_content[0]" class="form-control" placeholder="Topic Details">
-            </div>
-          </div>
-
-          <div class="agenda-field hide">
-            <div class="control-group input-group" style="margin-top:10px">
-              <b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
-              <br> <input type="hidden" name="presentation.slides[2].topic_title" value="Agenda"> <br>
-              <input type="hidden" name="presentation.slides[2].slide_type" value="agenda"> <br>
-              Agenda Item- need to add ability to add more: <input type="textarea" name="presentation.slides[2].text_content[0]" class="form-control" placeholder="Topic Details">
             </div>
           </div>
 
@@ -107,14 +99,17 @@
 </html>
 
 <script type="text/javascript">
+
+$("#s").on("click", function() {
+    alert("email");
+});
     $(document).ready(function() {
       var slideCount = -1
     //method to dynamically add slideFormation Div
-    //  $("#addSlides").click(function(){
-          //console.log
-  //        var html = $(".slideFormation").html();
-  //        $("form").append(html);
-  //    });
+      function removeSlides() {
+        alert("clicked");
+        console.log("hit");
+      }
 //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
@@ -129,10 +124,13 @@
       $(".agenda").click(function(){
         //$("#contentDiv").empty();
         slideCount+= 1;
-        $("<div />", { "class":"agenda-field", id: slideCount})
+        $("<div />", { class:"agenda-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
           .append($("<b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>"))
+          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slides", class: "bt" }))
+          //.append($("<button> Remove </button> ", {type: "button", id: "removeSlides", class: "btn btn-primary",  } ))
+          .append($("<br> <br>"))
           .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
           .append($("<br> <br>"))
           .appendTo(".subtopics");
