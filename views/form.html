@@ -21,10 +21,10 @@
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Slide
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
-                    <li><a name = "presentation.slides[0].type" class = "comparison">Comparison</a></li>
-                    <li><a name = "presentation.slides[0].type" class = "agenda">Agenda</a></li>
-                    <li><a name = "presentation.slides[0].type"class = "general">General</a></li>
-                    <li><a name = "presentation.slides[0].type" class = "stats">Statistics</a></li>
+                    <li><a class = "comparison">Comparison</a></li>
+                    <li><a class = "agenda">Agenda</a></li>
+                    <li><a class = "general">General</a></li>
+                    <li><a class = "stats">Statistics</a></li>
                   </ul>
               </div>
               <div class = "subtopics" id= "contentDiv">
@@ -100,16 +100,16 @@
 
 <script type="text/javascript">
 
-$("#s").on("click", function() {
-    alert("email");
-});
     $(document).ready(function() {
       var slideCount = -1
     //method to dynamically add slideFormation Div
       function removeSlides() {
         alert("clicked");
         console.log("hit");
-      }
+      };
+      $("#removeSlides").on("click",function(){
+          console.log("hit");
+      });
 //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
@@ -134,6 +134,9 @@ $("#s").on("click", function() {
           .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
           .append($("<br> <br>"))
           .appendTo(".subtopics");
+        });
+        $(document).on('click','#removeSlides',function() {
+            alert("Hello World");
         });
       $(".general").click(function(){
         //$("#contentDiv").empty();
