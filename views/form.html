@@ -102,14 +102,6 @@
 
     $(document).ready(function() {
       var slideCount = -1
-    //method to dynamically add slideFormation Div
-      function removeSlides() {
-        alert("clicked");
-        console.log("hit");
-      };
-      $("#removeSlides").on("click",function(){
-          console.log("hit");
-      });
 //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
@@ -125,6 +117,7 @@
         //$("#contentDiv").empty();
         slideCount+= 1;
         $("<div />", { class:"agenda-field", id: slideCount})
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
           .append($("<b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>"))
@@ -135,7 +128,12 @@
           .appendTo(".subtopics");
         });
         $(document).on('click','#removeSlides',function() {
-            alert("Hello World");
+            var i= $(this).parent().attr('id');
+            $("<input type='hidden' />")
+              .attr("name", "presentation.ignoreSlides[]")
+              .attr("value", i )
+              .appendTo("#testForm");
+            $(this).parent().hide();
         });
       $(".general").click(function(){
         //$("#contentDiv").empty();
