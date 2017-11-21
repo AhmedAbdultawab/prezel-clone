@@ -14,6 +14,9 @@
       <div class="panel-heading">Form</div>
         <div class="panel-body">
           <form id="testForm" action="javascript:test()">
+          <!-- Title of Presentation -->
+            <input type = "hidden" name = "presentation.title" id="title">
+            <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Slide
@@ -42,6 +45,17 @@
 </html>
 
 <script type="text/javascript">
+    var title = localStorage.getItem("title");
+    document.getElementById("title").value = title;
+    $(document).ready(function() {
+    //method to dynamically add slideFormation Div
+    //  $("#addSlides").click(function(){
+          //console.log
+  //        var html = $(".slideFormation").html();
+  //        $("form").append(html);
+  //    });
+//here it will remove the current value of the remove button which has been pressed
+
 
     $(document).ready(function() {
       // Universal global variable slideCount, so we can assoicate slides with a ID
@@ -168,8 +182,6 @@
           }
         });
     console.log(formData);
-    //document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-    //var testObject = { 'one': 1, 'two': 2, 'three': 3 };
     localStorage.setItem('formData', JSON.stringify(formData));
     window.location = "/generatePres";
   }
