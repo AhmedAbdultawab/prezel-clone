@@ -44,13 +44,14 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+      // Universal global variable slideCount, so we can assoicate slides with a ID
       var slideCount = 0
-//here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
       });
+      // Each .slide type option follows this sturcture: add one to slideCount, create a div with
+      // the slideCount and create inputs that follow JSON schema (refer to Design/Development doc)
       $(".comparison").click(function(){
-        //  $("#contentDiv").empty();
           slideCount+= 1;
           $("<div />", { class:"comparison-field", id: slideCount})
             .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
@@ -73,11 +74,9 @@
             .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].subtopics[1].text_content", placeholder: "Topic Details" }))
             .append($("<br> <br>"))
             .appendTo(".subtopics");
-          //$(".subtopics").after(html1);
       });
 
       $(".agenda").click(function(){
-        //$("#contentDiv").empty();
         slideCount+= 1;
         $("<div />", { class:"comparison-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
@@ -98,14 +97,6 @@
           .appendTo(".subtopics");
         });
 
-        $(document).on('click','#removeSlides',function() {
-            var i= $(this).parent().attr('id');
-            $("<input type='hidden' />")
-              .attr("name", "presentation.ignoreSlides[]")
-              .attr("value", i )
-              .appendTo("#testForm");
-            $(this).parent().hide();
-        });
       $(".general").click(function(){
         $("<div />", { class:"general-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
@@ -146,18 +137,22 @@
           .appendTo(".subtopics");
       });
 
+      // Remove button (assoicated by id name), only method (so far) to have
+      // click button work when building div the remove button in the div script
+      $(document).on('click','#removeSlides',function() {
+          var i= $(this).parent().attr('id');
+          $("<input type='hidden' />")
+            .attr("name", "presentation.ignoreSlides[]")
+            .attr("value", i )
+            .appendTo("#testForm");
+          $(this).parent().hide();
+      });
 
-      // $("#add-idea").click(function() {
-      //   var html = $(".subtopic-fields").html();
-      //   $(this).after(html);
-      //   $(this).after(html);
-      // });
-      // AJAX call to submit form
 });
 </script>
 
 
-<!-- Javascript for the nested form data package, form2js -->
+<!--Javascript for the nested form data package, form2js -->
 <script type="text/javascript">
   $('select').on('change', function(){
     $('#type').val($(this).val());
