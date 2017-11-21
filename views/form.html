@@ -52,24 +52,52 @@
       $(".comparison").click(function(){
         //  $("#contentDiv").empty();
           slideCount+= 1;
-          var html1 = $(".comparison-field").html();
-          $(".subtopics").append(html1);
+          $("<div />", { class:"comparison-field", id: slideCount})
+            .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
+            .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "comparison" }))
+            .append($("<b>COMPARISON</b> <br>"))
+            .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+            .append($("<br> Add Image: <br> "))
+            .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
+            .append($("<br> Add Video: <br> "))
+            .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
+            .append($("<br> <br> Overall Topic: <br> "))
+            .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
+            .append($("<br> <br> Comparison Topic 1: <br>"))
+            .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[0].name", placeholder: "Optional" }))
+            .append($("<br> Content: <br> "))
+            .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].subtopics[0].text_content", placeholder: "Topic Details" }))
+            .append($("<br> <br> Comparison Topic 2: <br>"))
+            .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[1].name", placeholder: "Optional" }))
+            .append($("<br> Content: <br> "))
+            .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].subtopics[1].text_content", placeholder: "Topic Details" }))
+            .append($("<br> <br>"))
+            .appendTo(".subtopics");
           //$(".subtopics").after(html1);
       });
+
       $(".agenda").click(function(){
         //$("#contentDiv").empty();
         slideCount+= 1;
-        $("<div />", { class:"agenda-field", id: slideCount})
+        $("<div />", { class:"comparison-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
-          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
-          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
-          .append($("<b>AGENDA</b> <br>"))
-          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide", class: "bt" }))
-          .append($("<br> <br>"))
-          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
+          .append($("<b>GENERAL</b> <br>"))
+          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<br> Add Image: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
+          .append($("<br> Add Video: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
+          .append($("<br> <br> Topic: <br> "))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
+          .append($("<br> Sub-header: <br>"))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name", placeholder: "General Topic Header Optional" }))
+          .append($("<br> Content: <br> "))
+          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "Topic Details" }))
           .append($("<br> <br>"))
           .appendTo(".subtopics");
         });
+
         $(document).on('click','#removeSlides',function() {
             var i= $(this).parent().attr('id');
             $("<input type='hidden' />")
@@ -79,7 +107,6 @@
             $(this).parent().hide();
         });
       $(".general").click(function(){
-        //$("#contentDiv").empty();
         $("<div />", { class:"general-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
