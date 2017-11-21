@@ -101,7 +101,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-      var slideCount = -1
+      var slideCount = 0
 //here it will remove the current value of the remove button which has been pressed
       $("body").on("click",".remove",function(){
           $(this).parents(".control-group").remove();
@@ -120,8 +120,8 @@
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].topic_title", value: "Agenda" }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "agenda" }))
-          .append($("<b>AGENDA- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>"))
-          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slides", class: "bt" }))
+          .append($("<b>AGENDA</b> <br>"))
+          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide", class: "bt" }))
           .append($("<br> <br>"))
           .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[0]", placeholder: "Topic Details" }))
           .append($("<br> <br>"))
@@ -137,9 +137,25 @@
         });
       $(".general").click(function(){
         //$("#contentDiv").empty();
-        var html1 = $(".general-field").html();
-        $(".subtopics").append(html1);
-      });
+        $("<div />", { class:"general-field", id: slideCount})
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
+          .append($("<b>GENERAL</b> <br>"))
+          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<br> Add Image: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
+          .append($("<br> Add Video: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
+          .append($("<br> <br> Topic: <br> "))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
+          .append($("<br> Sub-header: <br>"))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name", placeholder: "General Topic Header Optional" }))
+          .append($("<br> Content: <br> "))
+          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "Topic Details" }))
+          .append($("<br> <br>"))
+          .appendTo(".subtopics");
+        });
+
       $(".stats").click(function(){
       //  $("#contentDiv").empty();
         var html1 = $(".stats-field").html();
@@ -151,8 +167,7 @@
       //   $(this).after(html);
       // });
       // AJAX call to submit form
-    });
-
+});
 </script>
 
 
