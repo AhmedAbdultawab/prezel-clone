@@ -13,9 +13,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Form</div>
         <div class="panel-body">
-          <!--<button class="btn btn-primary" type="button" id= "addSlides" onclick = "addSlide()" >Add Slide</button> <br><br> -->
           <form id="testForm" action="javascript:test()">
-            <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add Slide
@@ -30,64 +28,9 @@
               <div class = "subtopics" id= "contentDiv">
               </div>
             </div>
-            <!-- end of slide object -->
             <br> <br>
-            <pre><code id="testArea">
-            </code></pre>
             <input type="submit" value="Submit">
           </form>
-
-
-
-          <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-
-
-                  <div class="comparison-field hide">
-            <div class="control-group input-group" style="margin-top:10px">
-              <b>COMPARISON- NEED TO ADD REMOVE SLIDE FUNCITONALITY </b> <br>
-              Add Image: <input type="file" name="presentation.slides[0].img_content" accept="image/*" value= "null">
-              Add Video: <input type="file" name="presentation.slides[0].vid_content" accept="video/*" value= "null"><br>
-              Overall Topic: <br> <input type="text" name="presentation.slides[0].topic_title" value=""> <br>
-              <input type="hidden" name="presentation.slides[0].slide_type" value="comparison"> <br>
-              Comparison Topic 1: <input type="text" name="presentation.slides[0].subtopics[0].name" value="Optional"> <br> <br>
-              <input type="textarea" name="presentation.slides[0].subtopics[0].text_content" class="form-control" placeholder="Comparison 1 Details"> <br><br>
-              Comparison Topic 2: <input type="text" name="presentation.slides[0].subtopics[1].name" value="Optional"> <br> <br>
-              <input type="textarea" name="presentation.slides[0].subtopics[1].text_content" class="form-control" placeholder="Comparison 2 Details">
-            </div>
-          </div>
-
-          <div class="general-field hide">
-            <div class="control-group input-group" style="margin-top:10px">
-              <b>GENERAL- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
-              <button class="btn btn-primary" type="button" id = "s"> Remove Slide </button>
-              Add Image: <input type="file" name="presentation.slides[1].img_content" accept="image/*" value= "Upload Image">
-              Add Video: <input type="file" name="presentation.slides[1].vid_content" accept="video/*" value= "Upload Video"><br>
-              Topic: <br> <input type="text" name="presentation.slides[1].topic_title" value=""> <br>
-              <input type="hidden" name="presentation.slides[1].slide_type" value="general"> <br>
-              Sub-header: <br> <input type="text" name="presentation.slides[1].subtopics.name" value="General Topic Header Optional"> <br>
-              <input type="textarea" name="presentation.slides[1].subtopics.text_content[0]" class="form-control" placeholder="Topic Details">
-            </div>
-          </div>
-
-          <div class="stats-field hide">
-            <div class="control-group input-group" style="margin-top:10px">
-              <b>STATISTICS- NEED TO ADD REMOVE SLIDE FUNCITONALITY</b> <br>
-              Add Image: <input type="file" name="presentation.slides[3].img_content" accept="image/*" value= "Upload Image">
-              Add Video: <input type="file" name="presentation.slides[3].vid_content" accept="video/*" value= "Upload Video"><br>
-              Overall Topic: <br> <input type="text" name="presentation.slides[3].topic_title" value=""> <br>
-              <input type="hidden" name="presentation.slides[3].slide_type" value="statistics"> <br>
-              Number: <br> <input type="text" name="presentation.slides[3].subtopics.name" value="1/10, 45%, 5, etc.."> <br>
-              Fact: <br> <input type="text" name="presentation.slides[3].subtopics.text_content" value="of people etc...."> <br>
-            </div>
-          </div>
-        <!--   <div class="subtopic-bullets hide">
-          <div class="control-group input-group" style="margin-top:10px">
-            <input type="text" name="addmore[]" class="form-control" placeholder="Subtopic_Bullet">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-primary" id="add-idea" onclick = "work()"> Add Idea</button>
-            </div>
-          </div>
-        </div>-->
 
     </div>
   </div>
@@ -157,10 +100,26 @@
         });
 
       $(".stats").click(function(){
-      //  $("#contentDiv").empty();
-        var html1 = $(".stats-field").html();
-        $(".subtopics").append(html1);
+        $("<div />", { class:"stats-field", id: slideCount})
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
+          .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "statistics" }))
+          .append($("<b>STATISTICS</b> <br>"))
+          .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<br> Add Image: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
+          .append($("<br> Add Video: <br> "))
+          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
+          .append($("<br> <br> Overall Topic: <br> "))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
+          .append($("<br> Number: <br>"))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name[]", placeholder: "1/10, 45%, 5, etc." }))
+          .append($("<br> Fact: <br> "))
+          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "of people etc...." }))
+          .append($("<br> <br>"))
+          .appendTo(".subtopics");
       });
+
+
       // $("#add-idea").click(function() {
       //   var html = $(".subtopic-fields").html();
       //   $(this).after(html);
