@@ -3,19 +3,22 @@ var presentationModel = require("../models/presentationModel.js")
 
 // All routes
 exports.init = function(app) {
-  // routes to deal with home, login, signup
-  app.get('/', index);
-  app.get('/home', home);
-
+  // app opens up to home page
+  app.get('/', home);
+  //go button redirects to the form
+  app.get('/form', index);
+  //app.get('/home', home);
+  app.get("/generatePres", generatePres);
 
   // Routes that deal with notes and updating them
   app.get('/presentations', getForm);
   app.post('/presentations', doCreate);
 
-  app.post('/generate_prez', generate_Powerpoint);
-
 }
 
+generatePres = function(req, res) {
+    res.render('generate_pres.html');
+  };
 index = function(req, res) {
 	res.render('form.html');
 };
@@ -27,12 +30,7 @@ home = function(req, res) {
 getForm = function(req, res) {
   res.render('form');
 };
-generate_Powerpoint = function(req, res) {
-  results = req.body
-  var resultsStr = JSON.stringify(results);
-  console.log(resultsStr);
-  res.render('form_output.ejs', { formOutput: resultsStr});
-};
+
 
 
 // Handling Calls
