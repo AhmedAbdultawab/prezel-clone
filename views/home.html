@@ -81,7 +81,12 @@
   });
   
   $("#gobutton").click(function() {
-      console.log("sup");
+      //console.log("sup");
+      //console.log(document.getElementById("titleInput").value);
+      var titleInput = document.getElementById("titleInput").value;
+      localStorage['title'] = titleInput;
+      //var testTitle = localStorage.getItem("title");
+      //console.log(testTitle);
       window.location = "/form";
 
     });
