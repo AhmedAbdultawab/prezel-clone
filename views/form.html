@@ -15,6 +15,8 @@
         <div class="panel-body">
           <!--<button class="btn btn-primary" type="button" id= "addSlides" onclick = "addSlide()" >Add Slide</button> <br><br> -->
           <form id="testForm" action="javascript:test()">
+          <!-- Title of Presentation -->
+            <input type = "hidden" name = "presentation.title" id="title">
             <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
@@ -107,8 +109,9 @@
 </html>
 
 <script type="text/javascript">
+    var title = localStorage.getItem("title");
+    document.getElementById("title").value = title;
     $(document).ready(function() {
-
     //method to dynamically add slideFormation Div
     //  $("#addSlides").click(function(){
           //console.log
@@ -164,8 +167,6 @@
           }
         });
     console.log(formData);
-    //document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-    //var testObject = { 'one': 1, 'two': 2, 'three': 3 };
     localStorage.setItem('formData', JSON.stringify(formData));
     window.location = "/generatePres";
   }
