@@ -95,15 +95,11 @@
 
       $(".agenda").click(function(){
         slideCount+= 1;
-        $("<div />", { class:"comparison-field", id: slideCount})
+        $("<div />", { class:"agenda-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
-          .append($("<b>GENERAL</b> <br>"))
+          .append($("<b>AGENDA</b> <br>"))
           .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
-          .append($("<br> Add Image: <br> "))
-          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
-          .append($("<br> Add Video: <br> "))
-          .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
           .append($("<br> <br> Topic: <br> "))
           .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
           .append($("<br> Sub-header: <br>"))
