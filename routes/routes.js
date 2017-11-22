@@ -9,6 +9,7 @@ exports.init = function(app) {
   app.get('/form', index);
   //app.get('/home', home);
   app.get("/generatePres", generatePres);
+  app.get("/presType", presType);
 
   // Routes that deal with notes and updating them
   app.get('/presentations', getForm);
@@ -29,6 +30,9 @@ home = function(req, res) {
 
 getForm = function(req, res) {
   res.render('form');
+};
+presType = function(req, res) {
+  res.render('type.html');
 };
 
 
