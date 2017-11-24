@@ -1,0 +1,25 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<button class="btn btn-default" id= "information">Informational</button>
+<button class = "btn btn-default" id= "pitch">Pitch</button>
+<button class = "btn btn-default" id = "business" >Business</button>
+
+<script type="text/javascript">
+
+$("#information").on("click", function() {
+    console.log("information");
+    localStorage['presType'] = "information";
+    window.location = "/form";
+});
+$("#pitch").on("click", function() {
+    console.log("pitch");
+    localStorage['presType'] = "pitch";
+    window.location = "/form";
+});
+$("#business").on("click", function() {
+    console.log("business");
+    localStorage['presType'] = "business";
+    window.location = "/form";
+});
+
+</script>
