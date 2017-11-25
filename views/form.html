@@ -16,6 +16,8 @@
           <form id="testForm" action="javascript:test()">
           <!-- Title of Presentation -->
             <input type = "hidden" name = "presentation.title" id="title">
+            <!--Type of Presentation -->
+            <input type = "hidden" name = "presentation.presType" id="presType">
             <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
@@ -47,7 +49,8 @@
 <script type="text/javascript">
     var title = localStorage.getItem("title");
     document.getElementById("title").value = title;
-    $(document).ready(function() {
+    var presType = localStorage.getItem("presType");
+    document.getElementById("presType").value = presType;
     //method to dynamically add slideFormation Div
     //  $("#addSlides").click(function(){
           //console.log

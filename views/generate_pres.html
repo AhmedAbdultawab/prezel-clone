@@ -1,7 +1,86 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/gitbrent/PptxGenJS/master/dist/pptxgen.js"></script>
+
 <p id="presentationObject"></p>
+<button id="save" onclick="downloadPPT()">Make powerpoint</button>
+<!-- {"presentation":
+    {"title":"dogs",
+    "presType":"information",
+    "slides":
+        [
+            {"slideID":"1",
+            "slide_type":"comparison",
+            "topic_title":"breeds",
+            "subtopics":
+            [
+                {"name":"yorkie","text_content":"small"},
+                {"name":"gr","text_content":"big"}
+            ]
+            }
+        ]
+    }
+}
+ -->
 
 <script>
 var retrievedObject = localStorage.getItem('formData');
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
+var presentationObject = JSON.parse(retrievedObject);
 document.getElementById("presentationObject").innerHTML = retrievedObject;
+function downloadPPT() {
+    var pptx = new PptxGenJS();
+    var presTitle = presentationObject.presentation.title;
+    var titleSlide = pptx.addNewSlide();
+    titleSlide.addText(presTitle);
+    for (i=0; i < presentationObject.presentation.slides.length; i++) {
+        var slideObject = presentationObject.presentation.slides[i];
+        //comparison slide
+        if (slideObject["slide_type"] == "comparison") {
+            var compSlide = pptx.addNewSlide();
+            var compTitle = slideObject.topic_title;
+            var compSubtopics = slideObject["subtopics"];
+            var compSub1 = compSubtopics[0].name;
+            var compSub1Text = compSubtopics[0].text_content;
+            var compSub2 = compSubtopics[1].name;
+            var compSub2Text = compSubtopics[1].text_content;
+            var position1 = { x:1.0, y:1.5, font_size:36, color:'000000' };
+            var position2 = { x:6.0, y:1.5, font_size:36, color:'000000' };
+            var position3 = { x:0.5, y:3.0, font_size:12, color:'000000' };
+            var position4 = { x:4.5, y:3.0, font_size:12, color:'000000' };
+            compSlide.addText(compTitle);
+            compSlide.addText(compSub1, position1);
+            compSlide.addText(compSub1Text, position3);
+            compSlide.addText(compSub2, position2);
+            compSlide.addText(compSub2Text, position4);
+        }
+         else if (slideObject["slide_type"] == "general") {
+            var genSlide = pptx.addNewSlide();
+            var genTitle = slideObject.topic_title;
+            var genSubtopic = slideObject.subtopics.name;
+            var genText = slideObject.text_content[0];
+            var position1 = { x:3.0, y:1.5, font_size:40, color:'000000' };
+            var position2 = { x:3.0, y:3.5, font_size:30, color:'000000' };
+            var position3 = { x:3.0, y:4.5, font_size:12, color:'000000' };
+            genSlide.addText(genTitle,position1);
+            genSlide.addText(genSubtopic, position2);
+            genSlide.addText(genText, position3);
+        }
+            //statistics slide 
+         else {
+            var statSlide = pptx.addNewSlide();
+            var statTitle = slideObject.topic_title;
+            console.log(statTitle);
+            var statSubtopics = slideObject["subtopics"];
+            var statNum = statSubtopics.name[0];
+            var statText = slideObject.text_content[0];
+            var position1 = { x:1.0, y:1.5, font_size:52, color:'000000' };
+            var position2 = { x:6.0, y:2.5, font_size:36, color:'000000' };
+            statSlide.addText(statTitle);
+            statSlide.addText(statNum, position1);
+            statSlide.addText(statText, position2);
+        }
+    }
+    pptx.save();
+}
 </script>
