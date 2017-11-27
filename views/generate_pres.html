@@ -30,9 +30,12 @@ var presentationObject = JSON.parse(retrievedObject);
 document.getElementById("presentationObject").innerHTML = retrievedObject;
 function isRemoveSlide(slideID) {
     console.log("in function is remove slide");
-    console.log(slideID);
-    console.log(presentationObject);
-    if (typeof(presentationObject["presentation"]['ignoreSlides']) != undefined) {
+    //console.log(slideID);
+    //console.log(presentationObject);
+    var store = presentationObject["presentation"]['ignoreSlides'];
+    console.log(store);
+    localStorage["store"] = store;
+    if (localStorage.getItem("store") != "undefined") {
         console.log("in if statement");
         var removeSlides = presentationObject["presentation"]['ignoreSlides'];
         console.log(removeSlides);
