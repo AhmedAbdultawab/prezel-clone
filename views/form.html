@@ -111,6 +111,7 @@
         });
 
       $(".general").click(function(){
+        slideCount+= 1;
         $("<div />", { class:"general-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
@@ -131,6 +132,7 @@
         });
 
       $(".stats").click(function(){
+        slideCount+= 1;
         $("<div />", { class:"stats-field", id: slideCount})
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slideID", value: slideCount }))
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "statistics" }))
