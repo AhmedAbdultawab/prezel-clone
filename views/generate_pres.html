@@ -28,6 +28,23 @@
 var retrievedObject = localStorage.getItem('formData');
 var presentationObject = JSON.parse(retrievedObject);
 document.getElementById("presentationObject").innerHTML = retrievedObject;
+function isRemoveSlide(slideID) {
+    console.log("in function is remove slide");
+    console.log(slideID);
+    console.log(presentationObject);
+    if (typeof(presentationObject["presentation"]['ignoreSlides']) != undefined) {
+        console.log("in if statement");
+        var removeSlides = presentationObject["presentation"]['ignoreSlides'];
+        console.log(removeSlides);
+        console.log("use the value above!!");
+        for (var s = 0; s < removeSlides.length; s++) {
+            if (removeSlides[s]==(slideID)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function downloadPPT() {
     var pptx = new PptxGenJS();
     var presTitle = presentationObject.presentation.title;
@@ -37,6 +54,7 @@ function downloadPPT() {
         var slideObject = presentationObject.presentation.slides[i];
         //comparison slide
         if (slideObject["slide_type"] == "comparison") {
+            if (!isRemoveSlide(slideObject["slideID"])) {
             var compSlide = pptx.addNewSlide();
             var compTitle = slideObject.topic_title;
             var compSubtopics = slideObject["subtopics"];
@@ -54,7 +72,9 @@ function downloadPPT() {
             compSlide.addText(compSub2, position2);
             compSlide.addText(compSub2Text, position4);
         }
+        }
          else if (slideObject["slide_type"] == "general") {
+            if (!isRemoveSlide(slideObject["slideID"])) {
             var genSlide = pptx.addNewSlide();
             var genTitle = slideObject.topic_title;
             var genSubtopic = slideObject.subtopics.name;
@@ -66,8 +86,10 @@ function downloadPPT() {
             genSlide.addText(genSubtopic, position2);
             genSlide.addText(genText, position3);
         }
+        }
 
         else if (slideObject["slide_type"] == "agenda") {
+            if (!isRemoveSlide(slideObject["slideID"])) {
            var genSlide = pptx.addNewSlide();
            var genTitle = slideObject.topic_title;
            var genSubtopic = slideObject.subtopics.name;
@@ -85,10 +107,12 @@ function downloadPPT() {
            var position2 = { x:1.0, y:1.2, font_size:30, color: secondaryColor };
            genSlide.addText(genTitle,position1);
            genSlide.addText(genSubtopic, position2);
+       }
 
        }
             //statistics slide
          else {
+            if (!isRemoveSlide(slideObject["slideID"])) {
             var statSlide = pptx.addNewSlide();
             var statTitle = slideObject.topic_title;
             console.log(statTitle);
@@ -101,6 +125,7 @@ function downloadPPT() {
             statSlide.addText(statNum, position1);
             statSlide.addText(statText, position2);
         }
+    }
     }
     pptx.save();
 }
