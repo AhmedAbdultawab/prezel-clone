@@ -1,6 +1,3 @@
-// Access to Models
-var presentationModel = require("../models/presentationModel.js")
-
 // All routes
 exports.init = function(app) {
   // app opens up to home page
@@ -13,7 +10,6 @@ exports.init = function(app) {
 
   // Routes that deal with notes and updating them
   app.get('/presentations', getForm);
-  app.post('/presentations', doCreate);
 
 }
 
