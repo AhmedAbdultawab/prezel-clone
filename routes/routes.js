@@ -34,19 +34,3 @@ getForm = function(req, res) {
 presType = function(req, res) {
   res.render('type.html');
 };
-
-
-
-// Handling Calls
-doCreate = function(req, res){
-  if (Object.keys(req.body).length == 0) {
-    res.render('form', {title: 'Create a presentation? ', obj: "No create message body found"});
-    return;
-  }
-  presentationModel.create ( "presentations",
-	                    req.body,
-		                  function(result) {
-  		                  var success = (result ? "Create successful" : "Create unsuccessful");
-	  	                  res.render('form', {title: 'Presentation created? ', obj: success});
-		                  });
-};
