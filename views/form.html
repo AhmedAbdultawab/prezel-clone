@@ -102,8 +102,6 @@
           .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
           .append($("<br> <br> Header: <br> "))
           .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
-          .append($("<br> Sub-header: <br>"))
-          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name", placeholder: "General Topic Header Optional" }))
           .append($("<br> Agenda Items: <br> "))
           .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", style: "width: 40%; height: 5em;", placeholder: 'Seperate by Comas. i.e.: Intro,Problem,Solution' }))
           .append($("<br> <br>"))
