@@ -1,6 +1,3 @@
-// Access to Models
-var presentationModel = require("../models/presentationModel.js")
-
 // All routes
 exports.init = function(app) {
   // app opens up to home page
@@ -13,7 +10,6 @@ exports.init = function(app) {
 
   // Routes that deal with notes and updating them
   app.get('/presentations', getForm);
-  app.post('/presentations', doCreate);
 
 }
 
@@ -33,20 +29,4 @@ getForm = function(req, res) {
 };
 presType = function(req, res) {
   res.render('type.html');
-};
-
-
-
-// Handling Calls
-doCreate = function(req, res){
-  if (Object.keys(req.body).length == 0) {
-    res.render('form', {title: 'Create a presentation? ', obj: "No create message body found"});
-    return;
-  }
-  presentationModel.create ( "presentations",
-	                    req.body,
-		                  function(result) {
-  		                  var success = (result ? "Create successful" : "Create unsuccessful");
-	  	                  res.render('form', {title: 'Presentation created? ', obj: success});
-		                  });
 };
