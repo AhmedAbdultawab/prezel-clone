@@ -40,11 +40,9 @@
     </div>
   </div>
 </div>
-
-
-
 </body>
 </html>
+
 
 <script type="text/javascript">
     var title = localStorage.getItem("title");
@@ -115,17 +113,17 @@
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
           .append($("<b>GENERAL</b> <br>"))
           .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<input />", { type: "button", id: "addTopic", value: "Add Topic"}))
           .append($("<br> Add Image: <br> "))
           .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
           .append($("<br> Add Video: <br> "))
           .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
           .append($("<br> <br> Topic: <br> "))
           .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
-          .append($("<br> Sub-header: <br>"))
-          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name", placeholder: "General Topic Header Optional" }))
-          .append($("<br> Content: <br> "))
-          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "Topic Details" }))
-          .append($("<br> <br>"))
+          .append($("<br> <br> Subtopic: <br> "))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[0].name", placeholder: "Optional" }))
+            .append($("<br> Subtopic Content: <br> "))
+            .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].subtopics[0].text_content", placeholder: "Topic Details" }))
           .appendTo(".subtopics");
         });
 
@@ -159,6 +157,21 @@
             .attr("value", i )
             .appendTo("#testForm");
           $(this).parent().hide();
+      });
+      //add topic in general slide type similar to remove button
+      addTopicCount = 1;
+      $(document).on('click','#addTopic',function() {
+        if (addTopicCount <= 2) {
+          var z = $(this).parents().attr("id");
+          var i = $(this).parent();
+          var element1 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z + "].subtopics[" +addTopicCount+ "].name");
+          var element2 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z+ "].subtopics[" +addTopicCount+ "].text_content");
+          i.append("<br>Subtopic: <br>");
+          i.append(element1);
+          i.append("<br>Subtopic Content: <br>");
+          i.append(element2);
+          addTopicCount += 1;
+        }
       });
 
 });
