@@ -18,6 +18,8 @@
             <input type = "hidden" name = "presentation.title" id="title">
             <!--Type of Presentation -->
             <input type = "hidden" name = "presentation.presType" id="presType">
+            <!-- Color Scheme -->
+            <input type = "hidden" name = "presentation.presType" id="presType">
             <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
@@ -42,11 +44,9 @@
     </div>
   </div>
 </div>
-
-
-
 </body>
 </html>
+
 
 <script type="text/javascript">
     var title = localStorage.getItem("title");
@@ -117,17 +117,17 @@
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "general" }))
           .append($("<b>GENERAL</b> <br>"))
           .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<input />", { type: "button", id: "addGenTopic", value: "Add Topic"}))
           .append($("<br> Add Image: <br> "))
           .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
           .append($("<br> Add Video: <br> "))
           .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].vid_content", accept: "video/*" ,value: "Upload Video" }))
           .append($("<br> <br> Topic: <br> "))
           .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
-          .append($("<br> Sub-header: <br>"))
-          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name", placeholder: "General Topic Header Optional" }))
-          .append($("<br> Content: <br> "))
-          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "Topic Details" }))
-          .append($("<br> <br>"))
+          .append($("<br> <br> Subtopic: <br> "))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[0].name", placeholder: "Optional" }))
+            .append($("<br> Subtopic Content: <br> "))
+            .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].subtopics[0].text_content", placeholder: "Topic Details" }))
           .appendTo(".subtopics");
         });
 
@@ -138,6 +138,7 @@
           .append($("<input />", { type: "hidden", name: "presentation.slides["+slideCount + "].slide_type", value: "statistics" }))
           .append($("<b>STATISTICS</b> <br>"))
           .append($("<input />", { type: "button", id: "removeSlides", value: "Remove Slide"}))
+          .append($("<input />", { type: "button", id: "addStatTopic", value: "Add Topic"}))
           .append($("<br> Add Image: <br> "))
           .append($("<input />", { type: "file", name: "presentation.slides["+slideCount + "].img_content", accept: "image/*" ,value: "Upload Image" }))
           .append($("<br> Add Video: <br> "))
@@ -145,9 +146,9 @@
           .append($("<br> <br> Overall Topic: <br> "))
           .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].topic_title" }))
           .append($("<br> Number: <br>"))
-          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics.name[]", placeholder: "1/10, 45%, 5, etc." }))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[0].name", placeholder: "1/10, 45%, 5, etc." }))
           .append($("<br> Fact: <br> "))
-          .append($("<input />", { type: "textarea", name: "presentation.slides[" + slideCount + "].text_content[]", placeholder: "of people etc...." }))
+          .append($("<input />", { type: "text", name: "presentation.slides[" + slideCount + "].subtopics[0].text_content", placeholder: "of people etc...." }))
           .append($("<br> <br>"))
           .appendTo(".subtopics");
       });
@@ -162,6 +163,37 @@
             .appendTo("#testForm");
           $(this).parent().hide();
       });
+      //Allow three subtopics for general slide
+      addGenTopicCount = 1;
+      $(document).on('click','#addGenTopic',function() {
+        if (addGenTopicCount <= 2) {
+          var z = $(this).parents().attr("id");
+          var i = $(this).parent();
+          var element1 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z + "].subtopics[" +addGenTopicCount+ "].name");
+          var element2 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z+ "].subtopics[" +addGenTopicCount+ "].text_content");
+          i.append("<br>Subtopic: <br>");
+          i.append(element1);
+          i.append("<br>Subtopic Content: <br>");
+          i.append(element2);
+          addGenTopicCount += 1;
+        }
+      });
+      //Allow three subtopics for stats slide
+      addStatTopicCount = 1;
+      $(document).on('click','#addStatTopic',function() {
+        if (addStatTopicCount <= 2) {
+          var z = $(this).parents().attr("id");
+          var i = $(this).parent();
+          var element1 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z + "].subtopics[" +addStatTopicCount+ "].name");
+          var element2 = $("<input>").attr("type", "text").attr("name", "presentation.slides[" + z+ "].subtopics[" +addStatTopicCount+ "].text_content");
+          i.append("<br>Number: <br>");
+          i.append(element1);
+          i.append("<br>Fact: <br>");
+          i.append(element2);
+          addStatTopicCount += 1;
+        }
+      });
+
 
 });
 </script>
@@ -184,7 +216,7 @@
         });
     console.log(formData);
     localStorage.setItem('formData', JSON.stringify(formData));
-    window.location = "/generatePres";
+    window.location = "/color";
   }
 </script>
 </body>

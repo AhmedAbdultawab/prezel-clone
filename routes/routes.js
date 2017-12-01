@@ -15,7 +15,14 @@ exports.init = function(app) {
   app.get('/form', form);
   app.get("/generatePres", generatePres);
   app.get("/presType", presType);
+<<<<<<< HEAD
   app.post('/ppt', makePowerpoint);
+=======
+  app.get("/color", color);
+
+  // Routes that deal with notes and updating them
+  app.get('/presentations', getForm);
+>>>>>>> 7638f0792f40528e3de4ba58f996e640b0a0e0bc
 
 }
 
@@ -23,10 +30,18 @@ home = function(req, res) {
   res.render('home.html');
 };
 
+<<<<<<< HEAD
+=======
+getForm = function(req, res) {
+  res.render('form');
+};
+
+>>>>>>> 7638f0792f40528e3de4ba58f996e640b0a0e0bc
 presType = function(req, res) {
   res.render('type.html');
 };
 
+<<<<<<< HEAD
 form = function(req, res) {
 	res.render('form.html');
 };
@@ -105,3 +120,8 @@ isRemoveSlide = function (slideID, i) {
   return false; */
 
 }
+=======
+color = function(req, res) {
+  res.render('color.html');
+};
+>>>>>>> 7638f0792f40528e3de4ba58f996e640b0a0e0bc

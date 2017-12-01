@@ -5,31 +5,106 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet"><!-- Proxima Nova-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"> <!-- animate -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
+  <!-- Proxima Nova-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <!-- animate -->
   <script src="https://use.fontawesome.com/47a7c6d863.js"></script>
 </head>
 
-<button class="btn btn-default" id= "information">Informational</button>
-<button class = "btn btn-default" id= "pitch">Pitch</button>
-<button class = "btn btn-default" id = "business" >Business</button>
+<body>
+
+  <div class="row" style="height:16%">    <!-- ########## Top Bar ########### -->
+    <!-- Top Bar -->
+    <div class="col-sm-11">
+      <h2 id="logo" style="margin-left:1%;font-size:4em;font-weight:700;font-family: 'Roboto', sans-serif;">
+       Pre<span style="color:#ffb83f;">zel</span><span style="color:#ff5b5b;">.</span> </h2>
+
+    </div>
+    <div class="col-sm-1"> <i class="fa fa-user-circle fa-lg" style="font-size:4em;padding-top:30%;"></i> </div>
+  </div>
+
+
+  <div class="animated FadeInRight" > <!-- ########## Slide-in Animation Div ########### -->
+
+
+  <div class="row" style="margin-left:2%;height:19%">  <!-- ########## What Kind Text ########### -->
+
+    <h2 style="font-size:4.2em;font-weight:800;white-space: nowrap;text-align:left;" class="animated FadeIn"> What Kind of Presentation is it<span style="color:#ff5b5b;padding-left:5px;">?</span></h2>
+
+  </div>
+
+  <div class="row" style="margin-left:1%;">  <!-- ########## Buttons ########### -->
+
+    <button class="btn btn-default" style="border-radius: 19.5px;margin:1%;margin-right:1.5%;max-width:15%;" id="pitch">
+    <div class="row">
+    <img src="https://image.ibb.co/exVdSm/noun_1299645_cc.png" alt="pitch" style="width=8em;height:8em;padding:1%;padding-top:15px;margin-top:1.2em;margin-bottom:0.8em;"/>
+    </div>
+
+    <div class= "row">
+      <div class="col-lg-12"> <h2 style="font-size:3em;text-align:left;font-weight:900;color:#FFCD2F;">Pitch</h2></div>
+    </div>
+
+    <div class= "row" style="margin-bottom:2em;">
+      <div class="col-lg-12" style="margin-top:-0.7em;"> <h4 style="text-align:left;color:#5b5b5b;white-space:normal;line-height:1.3em;">Ideal for proposals, innovations, and entrepreneurship projects</h4></div>
+    </div>
+  </button>
+
+
+    <button class="btn btn-default" style="border-radius: 19.5px;margin:1%;margin-right:1.5%;max-width:15%" id="information">
+  <div class="row">
+  <img src="https://image.ibb.co/h13Xnm/noun_125574_cc.png" alt="informational" style="width=8em;height:8em;padding:7%;padding-top:15px;margin-top:2em;"/>
+  </div>
+
+  <div class= "row">
+    <div class="col-lg-12"> <h2 style="font-size:2.65em;text-align:left;font-weight:900;color:#FFCD2F;">Information</h2></div>
+  </div>
+
+  <div class= "row" style="margin-bottom:2em;">
+    <div class="col-lg-12"  style="margin-top:-0.7em;"> <h4 style="text-align:left;color:#5b5b5b;white-space:normal;line-height:1.3em;">Ideal for lectures, assignments, and conveying new information
+</h4></div>
+  </div>
+</button>
+
+
+
+
+    <button class="btn btn-default" style="border-radius: 19.5px;margin:1%;max-width:15%" id="business">
+
+  <div class="row">
+  <img  src="https://image.ibb.co/nfbUYR/noun_1131259_cc.png" alt="business" style="width=8em;height:8em;padding:10%;padding-top:15px;margin-top:2em;"/>
+  </div>
+
+  <div class= "row">
+    <div class="col-lg-12"> <h2 style="font-size:3em;text-align:left;font-weight:900;color:#FFCD2F;">Business</h2></div>
+  </div>
+
+  <div class= "row" style="margin-bottom:2em;">
+    <div class="col-lg-12"  style="margin-top:-0.7em;"> <h4 style="text-align:left;color:#5b5b5b;white-space:normal;line-height:1.3em;">Ideal for explaining projects, reporting, and communicating <br />plans</h4></div>
+  </div>
+</button>
+  </div>
+
+
+
+</div> <!-- closes the slide-in animation div -->
+</body>
+
 
 <script type="text/javascript">
-
-$("#information").on("click", function() {
+  $("#information").on("click", function() {
     console.log("information");
     localStorage['presType'] = "information";
     window.location = "/form";
-});
-$("#pitch").on("click", function() {
+  });
+  $("#pitch").on("click", function() {
     console.log("pitch");
     localStorage['presType'] = "pitch";
     window.location = "/form";
-});
-$("#business").on("click", function() {
+  });
+  $("#business").on("click", function() {
     console.log("business");
     localStorage['presType'] = "business";
     window.location = "/form";
-});
-
+  });
 </script>
