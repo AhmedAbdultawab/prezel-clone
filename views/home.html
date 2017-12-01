@@ -38,7 +38,13 @@
     <div class="row" style="padding-top:1em;">
       <div class="col-lg-5" style="margin-left:30%;position:absloute;">
 
-        <input type="text" class="form-control" style="height:3em;font-size:1.2em;" id="titleInput" placeholder="Title of the Presentation...."></input>
+        <input type="text"
+               class="form-control"
+               style="height:3em;font-size:1.2em;"
+               id="titleInput"
+               placeholder="Title of the Presentation...."
+               onkeydown = "if (event.keyCode == 13)
+                                document.getElementById('gobutton').click()"></input>
       </div>
 
       <div class="btn btn-default" style="height:3.5em;font-style:italic;font-weight:800;color:#ffb83f;padding-top:0.9em;" id="gobutton" href="/"> Go ! </div>
@@ -79,7 +85,7 @@
       });
     }
   });
-  
+
   $("#gobutton").click(function() {
       //console.log("sup");
       //console.log(document.getElementById("titleInput").value);
@@ -90,4 +96,6 @@
       window.location = "/presType";
 
     });
+
+
 </script>
