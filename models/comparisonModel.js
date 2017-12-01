@@ -1,3 +1,4 @@
+var pptx = require('pptxgenjs');
 class ComparisonSlide {
   constructor(pres, title, topic1, topic2, templateID) {
     this.title = title;
@@ -11,7 +12,7 @@ class ComparisonSlide {
     var template = null //call to template
     var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
     this.slide.addText("comaprison", titlePos)
-    
+
    }
 
  };

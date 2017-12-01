@@ -10,7 +10,8 @@ class TitleSlide {
     var template = null //call to template
     var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
     this.slide.addText("title", titlePos)
-    
+    this.slide.addText("title", authors)
+
    }
 
  };

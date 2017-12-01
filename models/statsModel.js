@@ -1,3 +1,4 @@
+var pptx = require('pptxgenjs');
 class StatsSlide {
   constructor(pres, title, stats, templateID) {
     this.title = title;
@@ -18,7 +19,7 @@ class StatsSlide {
       var cPos = { x:3.0, y:4.5, font_size:20, color:'00FF00' };
       this.slide.addText(s, sPos)
       this.slide.addText(c, cPos) */
-    
+
    }
 
  };
