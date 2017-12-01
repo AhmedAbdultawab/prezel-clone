@@ -1,0 +1,138 @@
+<head>
+  <title>Home</title>
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- Google Fonts (Roboto and Playfair) -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i|Playfair+Display:400i" rel="stylesheet">
+  <!-- Proxima Nova-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <!-- animate -->
+  <script src="https://use.fontawesome.com/47a7c6d863.js"></script>
+</head>
+
+<body>
+
+  <div class="row" style="height:16%">    <!-- ########## Top Bar ########### -->
+    <!-- Top Bar -->
+    <div class="col-sm-11">
+      <h2 id="logo" style="margin-left:1%;font-size:4em;font-weight:700;font-family: 'Roboto', sans-serif;">
+       Pre<span style="color:#ffb83f;">zel</span><span style="color:#ff5b5b;">.</span> </h2>
+
+    </div>
+    <div class="col-sm-1"> <i class="fa fa-user-circle fa-lg" style="font-size:4em;padding-top:30%;"></i> </div>
+  </div>
+
+
+  <div class="animated FadeInRight" > <!-- ########## Slide-in Animation Div ########### -->
+
+
+  <div class="row" style="margin-left:2%;height:30%">  <!-- ########## What Kind Text ########### -->
+
+    <h4 style="font-family: 'Libre Baskerville', serif;font-size:2.3em;color:#8e8e8e;margin-bottom:-0.6em;" > One last thing...</h4>
+    <h2 style="font-size:4.2em;font-weight:800;white-space: nowrap;text-align:left;" class="animated FadeIn"> What's your Favorite Color<span style="color:#ff5b5b;padding-left:5px;">?</span></h2>
+
+  </div>
+
+<div class="row">
+  <div class="col-lg-4">
+
+  </div>
+
+  <div class="col-lg-1" >
+    <button class="btn btn-default" style="  width: 4em;
+    height: 4em;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 70px;" id="red">
+
+
+      <i class="fa fa-circle"  style="color:#ff4f4f;font-size:3.2em;" aria-hidden="true"></i>
+
+  </button>
+  </div>
+
+  <div class="col-lg-1" style="margin-left:2em;margin-right:2em;">
+    <button class="btn btn-default" style="  width: 4em;
+    height: 4em;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 70px;" id="beige">
+
+
+      <i class="fa fa-circle"  style="color:#ffd89b;font-size:3.2em;" aria-hidden="true"></i>
+
+  </button>
+  </div>
+
+
+  <div class="col-lg-1">
+
+
+    <button class="btn btn-default" style="  width: 4em;
+    height: 4em;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 70px;" id="beige">
+
+
+      <i class="fa fa-circle"  style="color:#fcff68;;font-size:3.2em;" aria-hidden="true"></i>
+
+    </button>
+
+  </div>
+
+  <div class="col-lg-3">
+
+  </div>
+
+</div>
+
+
+
+
+
+</div>
+
+</div> <!-- closes the slide-in animation div -->
+</body>
+
+
+<script type="text/javascript">
+  $("#red").on("click", function() {
+    console.log("red");
+    var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
+    dataObj.color = "red"; //add color to the object
+    dataObj = JSON.stringify(dataObj); //change back to string
+
+    console.log(dataObj);
+    localStorage.setItem('formData', dataObj); //overwrites formData with the new object
+    window.location = "/generatePres";
+
+  });
+
+  $("#beige").on("click", function() {
+    console.log("beige");
+    var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
+    dataObj.color = "beige"; //add color to the object
+    dataObj = JSON.stringify(dataObj); //change back to string
+
+    console.log(dataObj);
+    localStorage.setItem('formData', dataObj); //overwrites formData with the new object
+    window.location = "/generatePres";
+  });
+
+  $("#yellow").on("click", function() {
+    console.log("yellow");
+    var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
+    dataObj.color = "yellow"; //add color to the object
+    dataObj = JSON.stringify(dataObj); //change back to string
+
+    console.log(dataObj);
+    localStorage.setItem('formData', dataObj); //overwrites formData with the new object
+    window.location = "/generatePres";
+  });
+</script>

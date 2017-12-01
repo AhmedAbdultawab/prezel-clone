@@ -18,6 +18,8 @@
             <input type = "hidden" name = "presentation.title" id="title">
             <!--Type of Presentation -->
             <input type = "hidden" name = "presentation.presType" id="presType">
+            <!-- Color Scheme -->
+            <input type = "hidden" name = "presentation.presType" id="presType">
             <!-- starting to build out slide object -->
             <div class="slideFormation">
               <div class="dropdown">
@@ -182,7 +184,7 @@
         });
     console.log(formData);
     localStorage.setItem('formData', JSON.stringify(formData));
-    window.location = "/generatePres";
+    window.location = "/color";
   }
 </script>
 </body>
