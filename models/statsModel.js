@@ -9,7 +9,7 @@ class StatsSlide {
   //pull template from the template from here to inteact with this model
     var template = null //call to template
     var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
-    this.slide.addText(this.title, titlePos)
+    this.slide.addText("stats", titlePos)
   /*need some loop to get stat.content combo, and place it
     for (i = 0; i < this.stats.length; i++)  {
       var s = this.stats[i]
@@ -18,7 +18,7 @@ class StatsSlide {
       var cPos = { x:3.0, y:4.5, font_size:20, color:'00FF00' };
       this.slide.addText(s, sPos)
       this.slide.addText(c, cPos) */
-    }
+    
    }
 
  };

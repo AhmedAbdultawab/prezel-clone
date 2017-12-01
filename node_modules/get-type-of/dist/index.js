@@ -1,0 +1,1 @@
+module.exports = require('mout-lang-type/lang/typeOf');
