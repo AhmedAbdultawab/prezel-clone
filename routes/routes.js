@@ -2,6 +2,7 @@
 var TitleSlide = require("../models/titleModel.js")
 var AgendaSlide = require("../models/agendaModel.js")
 var StatsSlide = require("../models/statsModel.js")
+var templateModel = require("../models/templateModel.js")
 var GeneralSlide = require("../models/generalModel.js")
 var ComparisonSlide = require("../models/comparisonModel.js")
 var pptx = require('pptxgenjs');
@@ -39,6 +40,7 @@ generatePres = function(req, res) {
 makePowerpoint= function(req, res) {
   var i = req.body.formData
   var presentationObject = JSON.parse(i);
+  var temp = assignTemplate(presentationObject.presentation.presType)
   var presTitle = presentationObject.presentation.title;
   var presAuthors = presentationObject.presentation.authors;
   var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, 1);
@@ -88,6 +90,26 @@ makePowerpoint= function(req, res) {
     pptx.save( exportName, function(filename){ console.log('Inline callback here! -> '+exportName); } );
     console.log('\nFile created:\n'+' * '+exportName);
     res.render('givePrez');
+};
+
+assignTemplate = function(t) {
+  if (t == "information") {
+    templateModel.retrieve("templates", 1, function(data) {
+      console.log("got the template");
+      console.log (data);
+      return data;
+    });
+  }
+  else if (t == "business") {
+    templateModel.retrieve("templates", 2, function(data) {
+      return data;
+    });
+  }
+  else {
+    templateModel.retrieve("templates", 3, function(data) {
+      return data;
+    });
+  }
 };
 
 
