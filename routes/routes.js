@@ -43,7 +43,7 @@ makePowerpoint= function(req, res) {
   var temp = assignTemplate(presentationObject.presentation.presType)
   var presTitle = presentationObject.presentation.title;
   var presAuthors = presentationObject.presentation.authors;
-  var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, 1);
+  var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, 1, temp);
    for (i=0; i < presentationObject.presentation.slides.length; i++) {
       var slideObject = presentationObject.presentation.slides[i];
       var ignoreList = presentationObject.presentation.ignoreSlides
@@ -61,26 +61,26 @@ makePowerpoint= function(req, res) {
           var title = slideObject.topic_title;
           var topic1 = slideObject["subtopics"][0];
           var topic2 = slideObject["subtopics"][1];
-          var slide= new ComparisonSlide(pptx, title, topic1, topic2, 1)
+          var slide= new ComparisonSlide(pptx, title, topic1, topic2, temp)
         }
         //generalSlide
         else if (slideObject["slide_type"] == "general") {
           var title = slideObject.topic_title;
           var topics = slideObject["subtopics"];
-          var slide= new GeneralSlide(pptx,title, topics, 1)
+          var slide= new GeneralSlide(pptx,title, topics, temp)
         }
         // agendaSlide
         else if (slideObject["slide_type"] == "agenda") {
           console.log("creating agenda")
           var title = slideObject.topic_title;
           var list = slideObject.text_content[0].split(",").slice(0,5);
-          var slide= new AgendaSlide(pptx, title, list, 1)
+          var slide= new AgendaSlide(pptx, title, list, temp)
         }
         //statistics slide
         else if (slideObject["slide_type"] == "statistics") {
           var title = slideObject.topic_title;
           var topics = slideObject["subtopics"];
-          var slide= new StatsSlide(pptx, title, topics, 1)
+          var slide= new StatsSlide(pptx, title, topics, temp)
         }
       }
     }

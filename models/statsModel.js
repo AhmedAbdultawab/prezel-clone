@@ -1,6 +1,6 @@
 var pptx = require('pptxgenjs');
 class StatsSlide {
-  constructor(pres, title, stats, templateID) {
+  constructor(pres, title, stats, temp) {
     this.title = title;
     this.stats = stats;
     this.slide= pptx.addNewSlide();

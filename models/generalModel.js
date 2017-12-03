@@ -1,6 +1,6 @@
 var pptx = require('pptxgenjs');
 class GeneralSlide {
-  constructor(pres, title, topics, templateID) {
+  constructor(pres, title, topics, temp) {
     this.title = title;
     this.topics = topics;
     this.slide= pptx.addNewSlide();

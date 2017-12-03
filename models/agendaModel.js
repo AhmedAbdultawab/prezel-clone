@@ -1,7 +1,7 @@
 var pptx = require('pptxgenjs');
 
 class AgendaSlide {
-  constructor(pres, title, list, templateID) {
+  constructor(pres, title, list, temp) {
     this.title = title;
     this.agendaList = list;
     this.slide= pptx.addNewSlide();

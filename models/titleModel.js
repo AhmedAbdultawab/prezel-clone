@@ -1,5 +1,5 @@
 class TitleSlide {
-  constructor(pptx, title, authors, templateID) {
+  constructor(pptx, title, authors, temp) {
     this.title = title;
     this.authors = authors;
     this.slide= pptx.addNewSlide();

@@ -1,6 +1,6 @@
 var pptx = require('pptxgenjs');
 class ComparisonSlide {
-  constructor(pres, title, topic1, topic2, templateID) {
+  constructor(pres, title, topic1, topic2, temp) {
     this.title = title;
     this.topic1 = topic1;
     this.topic2 = topic2;
