@@ -2,15 +2,21 @@ class TitleSlide {
   constructor(pptx, title, authors, temp) {
     this.title = title;
     this.authors = authors;
+    //console.log(temp)
+    this.template = temp;
     this.slide= pptx.addNewSlide();
     this.generateSlide()
   }
   generateSlide() {
-  //pull template from the template from here to inteact with this model
-    var template = null //call to template
-    var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
-    this.slide.addText("title", titlePos)
-    //this.slide.addText("title", authors)
+    // postiton Title Name
+    console.log("inside model")
+    console.log(this.template)
+    var titlePos = { x:1.0, y:0.5, font_size: this.template.header.size , font: this.template.header.font, color:'00FF00' };
+    this.slide.addText(this.title, titlePos)
+    // Position Authors
+    var authorPos = { x:1.0, y:0.75, font_size: this.template.subheader.size , font: this.template.subheader.font, color:'00FF00' };
+    this.slide.addText(this.title, authorPos)
+   // Room to implement API to pull a picture here based on title name
 
    }
 

@@ -40,10 +40,12 @@ generatePres = function(req, res) {
 makePowerpoint= function(req, res) {
   var i = req.body.formData
   var presentationObject = JSON.parse(i);
-  var temp = assignTemplate(presentationObject.presentation.presType)
+  var temp = assignTemplate(presentationObject.presentation.presType);
   var presTitle = presentationObject.presentation.title;
   var presAuthors = presentationObject.presentation.authors;
-  var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, 1, temp);
+  console.log("temp info");
+  console.log (temp);
+  var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, temp);
    for (i=0; i < presentationObject.presentation.slides.length; i++) {
       var slideObject = presentationObject.presentation.slides[i];
       var ignoreList = presentationObject.presentation.ignoreSlides
@@ -93,23 +95,26 @@ makePowerpoint= function(req, res) {
 };
 
 assignTemplate = function(t) {
+  var temp = null
   if (t == "information") {
-    templateModel.retrieve("templates", 1, function(data) {
+  templateModel.retrieve("templates", "1", function(data) {
       console.log("got the template");
       console.log (data);
-      return data;
+      temp = data;
+      //console.log(temp)
     });
   }
   else if (t == "business") {
-    templateModel.retrieve("templates", 2, function(data) {
-      return data;
+    templateModel.retrieve("templates", "2", function(data) {
+      temp = data;
     });
   }
   else {
-    templateModel.retrieve("templates", 3, function(data) {
-      return data;
+    templateModel.retrieve("templates", "3", function(data) {
+      temp = data;
     });
   }
+  return temp;
 };
 
 
