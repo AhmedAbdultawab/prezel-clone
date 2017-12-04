@@ -16,7 +16,7 @@ exports.init = function(app) {
   app.get('/', home);
   //go button redirects to the form
   app.get('/form', getForm);
-  app.post("/generatePres", generatePres);
+  app.get("/generatePres", generatePres);
   app.get("/presType", presType);
   app.post('/ppt', makePowerpoint);
   app.get("/color", color);

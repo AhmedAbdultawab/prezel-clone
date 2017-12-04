@@ -2,13 +2,13 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var bodyParser= require('body-parser');
-var fileUpload = require('express-fileupload');
+//var fileUpload = require('express-fileupload');
 var app = express();
 var db;
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(fileUpload());
+//app.use(fileUpload());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs')
 app.engine('html', require('ejs').renderFile);
