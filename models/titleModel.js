@@ -1,8 +1,8 @@
 class TitleSlide {
-  constructor(pptx, title, authors, template) {
+  constructor(pptx, title, authors, color, template) {
     this.title = title;
     this.authors = authors;
-    //console.log(temp)
+    this.color = color;
     this.template = template;
     this.slide= pptx.addNewSlide();
     this.generateSlide()
@@ -10,12 +10,17 @@ class TitleSlide {
   generateSlide() {
     // postiton Title Name
     console.log("inside title slide")
-    console.log(this)
-  //  var titlePos = { x:1.0, y:0.5, font_size: this.template.header.size , font: this.template.header.font, color:'00FF00' };
-    //this.slide.addText(this.title, titlePos)
+    //console.log(this)
+    var titleSize = this.template.header.size
+    var titelFont = this.template.header.font
+    console.log(color);
+    var titlePos = { x:1.0, y:0.5, font_size: titleSize , font: titelFont, color:this.color };
+    this.slide.addText(this.title, titlePos)
     // Position Authors
-  //  var authorPos = { x:1.0, y:0.75, font_size: this.template.subheader.size , font: this.template.subheader.font, color:'00FF00' };
-  //  this.slide.addText(this.title, authorPos)
+    var authorSize = this.template.subheader.size
+    var authorFont = this.template.subheader.font
+    var authorPos = { x:1.0, y:1, font_size: authorSize , font: authorFont, color:this.color };
+    this.slide.addText(this.authors, authorPos)
    // Room to implement API to pull a picture here based on title name
 
    }

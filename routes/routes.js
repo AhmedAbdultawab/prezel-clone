@@ -143,10 +143,11 @@ makePowerpoint= function(req, res) {
     }
     else {
       console.log("made it to else temp case");
-      console.log(template);
+      console.log(presentationObject.presentation.color);
+      var presColor = presentationObject.presentation.color;
       var presTitle = presentationObject.presentation.title;
       var presAuthors = presentationObject.presentation.authors;
-      var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, template);
+      var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, presColor, template);
       for (i=0; i < presentationObject.presentation.slides.length; i++) {
         var slideObject = presentationObject.presentation.slides[i];
         var ignoreList = presentationObject.presentation.ignoreSlides

@@ -105,7 +105,7 @@
   $("#red").on("click", function() {
     console.log("red");
     var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
-    dataObj.color = "red"; //add color to the object
+    dataObj.presentation.color = "F95454"; //add color to the object
     dataObj = JSON.stringify(dataObj); //change back to string
 
     console.log(dataObj);
@@ -117,7 +117,7 @@
   $("#beige").on("click", function() {
     console.log("beige");
     var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
-    dataObj.color = "beige"; //add color to the object
+    dataObj.presentation.color = "F7D994"; //add color to the object
     dataObj = JSON.stringify(dataObj); //change back to string
 
     console.log(dataObj);
@@ -128,7 +128,7 @@
   $("#yellow").on("click", function() {
     console.log("yellow");
     var dataObj = JSON.parse(localStorage.getItem('formData')); //change formData from JSON string to obj
-    dataObj.color = "yellow"; //add color to the object
+    dataObj.presentation.color = "FFE74C"; //add color to the object
     dataObj = JSON.stringify(dataObj); //change back to string
 
     console.log(dataObj);
