@@ -171,20 +171,20 @@ makePowerpoint= function(req, res) {
           else if (slideObject["slide_type"] == "general") {
           var title = slideObject.topic_title;
           var topics = slideObject["subtopics"];
-          var slide= new GeneralSlide(pptx,title, topics, template)
+          var slide= new GeneralSlide(pptx,title, topics, presColor, template)
           }
         // agendaSlide
           else if (slideObject["slide_type"] == "agenda") {
           console.log("creating agenda")
           var title = slideObject.topic_title;
           var list = slideObject.text_content[0].split(",").slice(0,5);
-          var slide= new AgendaSlide(pptx, title, list, template)
+          var slide= new AgendaSlide(pptx, title, list, presColor, template)
           }
         //statistics slide
           else if (slideObject["slide_type"] == "statistics") {
           var title = slideObject.topic_title;
           var topics = slideObject["subtopics"];
-          var slide= new StatsSlide(pptx, title, topics, template)
+          var slide= new StatsSlide(pptx, title, topics, color, template)
           }
       }//big else close
     }//for loop

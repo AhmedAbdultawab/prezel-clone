@@ -1,16 +1,26 @@
 var pptx = require('pptxgenjs');
 class StatsSlide {
-  constructor(pres, title, stats, temp) {
+  constructor(pres, title, stats, color, temp) {
     this.title = title;
     this.stats = stats;
+    this.color = color;
+    this.template = temp;
     this.slide= pptx.addNewSlide();
     this.generateSlide();
   }
   generateSlide() {
-  //pull template from the template from here to inteact with this model
-    var template = null //call to template
-    var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
-    this.slide.addText("stats", titlePos)
+    var titleSize = this.template.header.size;
+    var titleFont = this.template.header.font;
+    var titlePos = { x:"10%", y:"10%", font_size:titleSize, color:this.color };
+    var statNum = this.stats[0].name;
+    var statNumSize = this.template.subheader.size;
+    var statNumPos = { x:"20%", y:"30%", font_size:statNumSize, color:this.color };
+    var statContent = this.stats[0].text_content;
+    var statContentSize = this.template.content.size;
+    var statContentPos = { x:"35%", y:"35%", font_size:statContentSize, color:'000000' };
+    this.slide.addText(this.title, titlePos);
+    this.slide.addText(statNum, statNumPos);
+    this.slide.addText(statContent, statContentPos);
   /*need some loop to get stat.content combo, and place it
     for (i = 0; i < this.stats.length; i++)  {
       var s = this.stats[i]

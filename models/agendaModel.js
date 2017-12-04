@@ -1,17 +1,27 @@
 var pptx = require('pptxgenjs');
 
 class AgendaSlide {
-  constructor(pres, title, list, temp) {
+  constructor(pres, title, list, color, temp) {
     this.title = title;
+    this.color = color;
     this.agendaList = list;
+    this.template = temp;
     this.slide= pptx.addNewSlide();
     this.generateSlide()
   }
   generateSlide() {
   //pull template from the template from here to inteact with this model
-    var template = null //call to template
-    var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
-    this.slide.addText("agenda", titlePos)
+    console.log("inside agenda slide")
+    console.log(this.list)
+    var titleSize = this.template.header.size
+    var titleFont = this.template.header.font
+    var contentSize = this.template.content.size
+   // var template = null //call to template
+    var titlePos = { x:"10%", y:"10%", font_size:titleSize, color:this.color };
+    this.slide.addText(this.title, titlePos)
+    var agendaPos = { x:"10%", y:"25%", font_size:contentSize, color:this.color };
+    this.slide.addText(this.agendaList[0], agendaPos)
+
 
    }
 
