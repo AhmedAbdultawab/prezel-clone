@@ -1,9 +1,10 @@
 var pptx = require('pptxgenjs');
 class GeneralSlide {
-  constructor(pres, title, topics, color, temp) {
+  constructor(pres, title, topics, color, colorLight, temp) {
     this.title = title;
     this.topics = topics;
     this.color = color;
+    this.colorLight = colorLight;
     this.template = temp;
     this.slide= pptx.addNewSlide();
     this.generateSlide()
@@ -16,13 +17,14 @@ class GeneralSlide {
     var subheaderSize = this.template.subheader.size
     var subHeader = this.topics[0].name
     var content = this.topics[0].text_content;
+    var contentColor = this.template.content.color;
    // var template = null //call to template
-    var titlePos = { x:"10%", y:"20%", font_size:titleSize, color:this.color };
+    var titlePos = { x:"7%", y:"40%", font_size:titleSize, bold: true, color:this.colorLight};
     this.slide.addText(this.title, titlePos)
-    var subHeaderPos = { x:"10%", y:"40%", font_size:subheaderSize, color:this.color };
-    var subHeaderContentPos = { x:"10%", y:"60%", font_size:contentSize, color:this.color };
-    this.slide.addText(subHeader, subHeaderPos)
-    this.slide.addText(content, subHeaderContentPos)
+    //var subHeaderPos = { x:"30%", y:"60%", font_size:subheaderSize, color:this.color };
+    var contentPos = { x:"40%", y:"60%", w: "60%", autoFit: true, bullet: true, font_size:contentSize, color:this.contentColor };
+    //this.slide.addText(subHeader, subHeaderPos)
+    this.slide.addText(content, contentPos)
 
    }
 

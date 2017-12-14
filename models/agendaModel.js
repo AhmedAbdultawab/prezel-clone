@@ -16,11 +16,19 @@ class AgendaSlide {
     var titleSize = this.template.header.size
     var titleFont = this.template.header.font
     var contentSize = this.template.content.size
+    var yCoord = 35;
+    console.log(this.agendaList);
+    for (var i = 0; i < this.agendaList.length; i++) {
+        console.log(this.agendaList[i]);
+        console.log(yCoord.toString()+"%");
+        this.slide.addText(this.agendaList[i], { x:"10%", y: yCoord.toString()+"%", font_size:contentSize, bullet: true, color: "000000" });
+        yCoord += 10;
+    }
    // var template = null //call to template
-    var titlePos = { x:"10%", y:"10%", font_size:titleSize, color:this.color };
+    var titlePos = { x:"10%", y:"10%", font_size:titleSize, bold: true, color:this.color };
     this.slide.addText(this.title, titlePos)
-    var agendaPos = { x:"10%", y:"25%", font_size:contentSize, color:this.color };
-    this.slide.addText(this.agendaList[0], agendaPos)
+    //var agendaPos = { x:"10%", y:"25%", font_size:contentSize, color:this.color };
+    //this.slide.addText(this.agendaList[0], agendaPos)
 
 
    }

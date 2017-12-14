@@ -145,6 +145,16 @@ makePowerpoint= function(req, res) {
       console.log("made it to else temp case");
       console.log(presentationObject.presentation.color);
       var presColor = presentationObject.presentation.color;
+      var colorLight = "" ;
+      if (presColor == "F95454"){ //red
+          colorLight ="FF9393";
+        }
+      else if (presColor == "F7D994"){ //beige
+        colorLight ="F4E3BA";
+      }
+      else{ //yellow
+        colorLight ="#FFF091";
+      }
       var presTitle = presentationObject.presentation.title;
       var presAuthors = presentationObject.presentation.authors;
       var titleSlide = new TitleSlide(pptx, presTitle, presAuthors, presColor, template);
@@ -171,7 +181,7 @@ makePowerpoint= function(req, res) {
           else if (slideObject["slide_type"] == "general") {
           var title = slideObject.topic_title;
           var topics = slideObject["subtopics"];
-          var slide= new GeneralSlide(pptx,title, topics, presColor, template)
+          var slide= new GeneralSlide(pptx,title, topics, presColor, colorLight, template)
           }
         // agendaSlide
           else if (slideObject["slide_type"] == "agenda") {
