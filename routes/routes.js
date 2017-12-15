@@ -131,6 +131,7 @@ assignTemplate = function(t) {
 
 makePowerpoint= function(req, res) {
   var i = req.body.formData
+  console.log(i)
   var presentationObject = JSON.parse(i);
   console.log("hello in make powerpoint");
   console.log(template);
