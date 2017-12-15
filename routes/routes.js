@@ -172,10 +172,13 @@ makePowerpoint= function(req, res) {
           console.log(slideObject)
           //comparison slide
           if (slideObject["slide_type"] == "comparison") {
+          //To improve: have subtopics be one object and iterate through them
           var title = slideObject.topic_title;
-          var topic1 = slideObject["subtopics"][0];
-          var topic2 = slideObject["subtopics"][1];
-          var slide= new ComparisonSlide(pptx, title, topic1, topic2, template)
+          var subtopic1 = slideObject["subtopics"][0].name;
+          var topic1 = slideObject["subtopics"][0].text_content;
+          var subtopic2 = slideObject["subtopics"][1].name;
+          var topic2 = slideObject["subtopics"][1].text_content;
+          var slide= new ComparisonSlide(pptx, title, subtopic1,  topic1, subtopic2,  topic2, presColor, colorLight, template)
           }
         //generalSlide
           else if (slideObject["slide_type"] == "general") {
@@ -188,13 +191,16 @@ makePowerpoint= function(req, res) {
           console.log("creating agenda")
           var title = slideObject.topic_title;
           var list = slideObject.text_content[0].split(",").slice(0,5);
-          var slide= new AgendaSlide(pptx, title, list, presColor, template)
+          var slide= new AgendaSlide(pptx, title, list, presColor, colorLight, template)
           }
         //statistics slide
           else if (slideObject["slide_type"] == "statistics") {
-          var title = slideObject.topic_title;
+          var title = null
+          if (slideObject.topic_title) {
+            title = slideObject.topic_title;
+          }
           var topics = slideObject["subtopics"];
-          var slide= new StatsSlide(pptx, title, topics, color, template)
+          var slide= new StatsSlide(pptx, title, topics, presColor, colorLight,  template)
           }
       }//big else close
     }//for loop

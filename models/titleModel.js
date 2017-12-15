@@ -21,7 +21,7 @@ class TitleSlide {
     // Position Authors
     var authorSize = this.template.subheader.size
     var authorFont = this.template.subheader.font
-    var authorPos = { x:"53%", y:"85%", font_size: authorSize , font: authorFont, color:"E8E8E8" };
+    var authorPos = { x:"50%", y:"85%", font_size: authorSize , font: authorFont, color:"E8E8E8" };
     this.slide.addText(this.authors, authorPos)
     this.slide.back = this.color;
    // Room to implement API to pull a picture here based on title name

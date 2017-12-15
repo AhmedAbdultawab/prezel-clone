@@ -1,9 +1,10 @@
 var pptx = require('pptxgenjs');
 
 class AgendaSlide {
-  constructor(pres, title, list, color, temp) {
+  constructor(pres, title, list, color, colorLight, temp) {
     this.title = title;
     this.color = color;
+    this.colorLight = colorLight;
     this.agendaList = list;
     this.template = temp;
     this.slide= pptx.addNewSlide();
@@ -11,21 +12,19 @@ class AgendaSlide {
   }
   generateSlide() {
   //pull template from the template from here to inteact with this model
-    console.log("inside agenda slide")
-    console.log(this.list)
     var titleSize = this.template.header.size
     var titleFont = this.template.header.font
     var contentSize = this.template.content.size
-    var yCoord = 35;
+    var yCoord = 22;
     console.log(this.agendaList);
     for (var i = 0; i < this.agendaList.length; i++) {
-        console.log(this.agendaList[i]);
-        console.log(yCoord.toString()+"%");
-        this.slide.addText(this.agendaList[i], { x:"10%", y: yCoord.toString()+"%", font_size:contentSize, bullet: true, color: "000000" });
-        yCoord += 10;
+        //console.log(this.agendaList[i]);
+        //console.log(yCoord.toString()+"%");
+        this.slide.addText(this.agendaList[i], { x:"8%", y: yCoord.toString()+"%", font_size:contentSize, bullet: true, color: "000000" });
+        yCoord += 8;
     }
    // var template = null //call to template
-    var titlePos = { x:"10%", y:"10%", font_size:titleSize, bold: true, color:this.color };
+    var titlePos = { x:"30%", y:"80%", font_size:titleSize, bold: true, color:this.colorLight };
     this.slide.addText(this.title, titlePos)
     //var agendaPos = { x:"10%", y:"25%", font_size:contentSize, color:this.color };
     //this.slide.addText(this.agendaList[0], agendaPos)

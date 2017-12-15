@@ -1,17 +1,35 @@
 var pptx = require('pptxgenjs');
 class ComparisonSlide {
-  constructor(pres, title, topic1, topic2, temp) {
+  constructor(pres, title, subtopic1, topic1, subtopic2, topic2, color, colorLight, temp) {
     this.title = title;
+    this.subtopic1 = subtopic1;
     this.topic1 = topic1;
+    this.subtopic2 = subtopic2;
     this.topic2 = topic2;
+    this.color= color;
+    this.colorLight = colorLight;
+    this.template = temp;
     this.slide= pptx.addNewSlide();
     this.generateSlide()
   }
   generateSlide() {
   //pull template from the template from here to inteact with this model
-    var template = null //call to template
-    var titlePos = { x:1.0, y:0.5, font_size:42, color:'00FF00' };
-    this.slide.addText("comaprison", titlePos)
+  // To improve: fix it to loop based on subtopics
+    var titleSize = this.template.subheader.size
+    var titlePos = { x:"3%", y:"8%", font_size:titleSize, bold: true, color:this.colorLight};
+    this.slide.addText(this.title, titlePos)
+    var subtopicSize = this.template.comparison.size
+    var subtopic1Pos = { x:'18%', y:'60%', font_size:subtopicSize, color: "000000" };
+    var subtopic2Pos = { x: '52%', y:'60%', font_size:subtopicSize, color: "000000" };
+    this.slide.addText(this.subtopic1, subtopic1Pos )
+    this.slide.addText(this.subtopic2, subtopic2Pos )
+    var contentSize = this.template.content.size
+    var topic1Pos = { x: '18%', y:'66%', w: '30%', font_size:contentSize, valign: 'top', color: "A8A8A8" };
+    var topic2Pos = { x:'52%', y:'66%', w: '30%',font_size:contentSize, valign: 'top', color: "A8A8A8" };
+    console.log(this.topic1)
+    console.log(this.topic2)
+    this.slide.addText(this.topic1, topic1Pos )
+    this.slide.addText(this.topic2, topic2Pos )
 
    }
 

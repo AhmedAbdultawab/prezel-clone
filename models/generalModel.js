@@ -22,7 +22,7 @@ class GeneralSlide {
     var titlePos = { x:"7%", y:"40%", font_size:titleSize, bold: true, color:this.colorLight};
     this.slide.addText(this.title, titlePos)
     //var subHeaderPos = { x:"30%", y:"60%", font_size:subheaderSize, color:this.color };
-    var contentPos = { x:"40%", y:"60%", w: "60%", autoFit: true, bullet: true, font_size:contentSize, color:this.contentColor };
+    var contentPos = { x:"40%", y:"60%", w: "60%", autoFit: true, font_size:contentSize, color:this.contentColor };
     //this.slide.addText(subHeader, subHeaderPos)
     this.slide.addText(content, contentPos)
 
